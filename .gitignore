@@ -1,0 +1,37 @@
+# Secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Local databases (state.json is committed back via Actions, exclude local SQLite)
+*.db
+*.sqlite
+
+# Build artifacts
+build/
+dist/
+
+# Reports from verify_feeds.py
+sources_report.json

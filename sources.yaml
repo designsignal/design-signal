@@ -1,0 +1,654 @@
+# =============================================================================
+# AI Native Product Design (UA) — RSS Sources (v3)
+# =============================================================================
+# Channel name (working title): "AI Native Product Design"
+# Focus: AI-driven design tools, agentic workflows, generative UI, modern stack.
+# Removed: classical UX editorial (NN/g, A List Apart, UX Booth, UX Movement,
+#          Boxes and Arrows, UX Planet, Prototypr) — not on-brand for AI-native channel.
+#
+# Total: ~60 sources across 3 layers.
+#
+# Layer 1 (primary):     AI tools blogs, AI labs, thought leaders — your content
+# Layer 2 (signals):     HN, Reddit, PH, GitHub, TG channels — engagement boost
+# Layer 3 (competitors): top AI/design digests — meta-analysis (consensus vs gems)
+#
+# Run `python3 verify_feeds.py` to check which URLs are live.
+# Many "needs_verification" entries — these tools are new and RSS may not exist
+# yet; verify script will flag and you replace via rss.app or scraping.
+# =============================================================================
+
+layer_1_primary:
+
+  # --- AI DESIGN TOOLS: text-to-UI / code generators (the core of the channel) ---
+  ai_ui_generators:
+    - name: "Lovable"
+      url: "https://lovable.dev/blog/rss.xml"
+      weight: 1.6
+      lang: en
+      tags: [ai, lovable, text-to-app]
+      notes: "Most-discussed AI app builder 2025. status: needs_verification."
+
+    - name: "v0 by Vercel"
+      url: "https://v0.app/blog/rss.xml"
+      weight: 1.6
+      lang: en
+      tags: [ai, v0, vercel, generative-ui]
+      notes: "status: needs_verification — may be /blog/feed.xml."
+
+    - name: "Bolt.new (StackBlitz)"
+      url: "https://bolt.new/blog/rss.xml"
+      weight: 1.5
+      lang: en
+      tags: [ai, bolt, full-stack-gen]
+      notes: "status: needs_verification — fallback: stackblitz.com/blog."
+
+    - name: "Cursor blog"
+      url: "https://www.cursor.com/blog/rss.xml"
+      weight: 1.5
+      lang: en
+      tags: [ai, cursor, ide, agent]
+      notes: "Reference IDE for AI-native devs. status: needs_verification."
+
+    - name: "Magic Patterns"
+      url: "https://www.magicpatterns.com/blog/rss.xml"
+      weight: 1.5
+      lang: en
+      tags: [ai, magic-patterns, components]
+      notes: "Pietro Schirano's tool. status: needs_verification."
+
+    - name: "Stitch by Google"
+      url: "https://stitch.withgoogle.com/blog/rss.xml"
+      weight: 1.5
+      lang: en
+      tags: [ai, google, stitch, text-to-ui]
+      notes: "New (2025). Likely needs scraping via rss.app initially."
+
+    - name: "Subframe"
+      url: "https://www.subframe.com/blog/rss.xml"
+      weight: 1.3
+      lang: en
+      tags: [ai, subframe, components]
+      notes: "status: needs_verification."
+
+    - name: "Onlook (open source)"
+      url: "https://onlook.dev/blog/rss.xml"
+      weight: 1.3
+      lang: en
+      tags: [ai, onlook, open-source, react]
+
+    - name: "Anima blog"
+      url: "https://www.animaapp.com/blog/rss.xml"
+      weight: 1.2
+      lang: en
+      tags: [anima, figma-to-code, ai]
+
+    - name: "Builder.io blog"
+      url: "https://www.builder.io/blog/rss.xml"
+      weight: 1.3
+      lang: en
+      tags: [builder, visual-copilot, ai]
+
+    - name: "Tempo Labs"
+      url: "https://www.tempo.new/blog/rss.xml"
+      weight: 1.2
+      lang: en
+      tags: [tempo, ai, react]
+
+    - name: "Polymet AI"
+      url: "https://polymet.ai/blog/rss.xml"
+      weight: 1.1
+      lang: en
+      tags: [polymet, ai-ui]
+
+    - name: "Readdy"
+      url: "https://readdy.ai/blog/rss.xml"
+      weight: 1.1
+      lang: en
+      tags: [readdy, ai-ui]
+
+  # --- AI inside design tools (Figma, Framer, etc.) ---
+  design_tool_ai:
+    - name: "Figma blog"
+      url: "https://www.figma.com/blog/feed/"
+      weight: 1.6
+      lang: en
+      tags: [figma, ai, make, sites]
+      notes: "Critical — Figma Make/Sites/AI Agents are central to AI design news."
+
+    - name: "Framer blog"
+      url: "https://www.framer.com/blog/rss.xml"
+      weight: 1.4
+      lang: en
+      tags: [framer, ai, workshop]
+
+    - name: "Tldraw blog"
+      url: "https://tldraw.dev/blog/feed.xml"
+      weight: 1.3
+      lang: en
+      tags: [tldraw, canvas, ai, make-real]
+
+    - name: "Whimsical blog"
+      url: "https://whimsical.com/blog/rss.xml"
+      weight: 1.0
+      lang: en
+      tags: [whimsical, ai-diagram]
+
+  # --- Generative visual / image AI ---
+  generative_visual:
+    - name: "Recraft"
+      url: "https://www.recraft.ai/blog/rss.xml"
+      weight: 1.2
+      lang: en
+      tags: [recraft, ai, vector]
+
+    - name: "Krea AI"
+      url: "https://www.krea.ai/blog/rss.xml"
+      weight: 1.2
+      lang: en
+      tags: [krea, ai, creative]
+
+    - name: "Ideogram"
+      url: "https://ideogram.ai/blog/rss.xml"
+      weight: 1.1
+      lang: en
+      tags: [ideogram, ai, typography]
+
+    - name: "Runway blog"
+      url: "https://runwayml.com/blog/rss"
+      weight: 1.2
+      lang: en
+      tags: [runway, ai, video]
+
+    - name: "Adobe Firefly news"
+      url: "https://blog.adobe.com/en/topics/firefly/rss"
+      weight: 1.1
+      lang: en
+      tags: [adobe, firefly, ai]
+
+  # --- Foundation models (they move the whole field) ---
+  ai_labs:
+    - name: "Anthropic news"
+      url: "https://www.anthropic.com/news/feed.xml"
+      weight: 1.6
+      lang: en
+      tags: [anthropic, claude, mcp, agents]
+      notes: "Claude releases, Computer Use, MCP, Skills — top priority."
+
+    - name: "OpenAI blog"
+      url: "https://openai.com/blog/rss.xml"
+      weight: 1.5
+      lang: en
+      tags: [openai, gpt, dalle]
+
+    - name: "Google DeepMind"
+      url: "https://deepmind.google/discover/blog/rss.xml"
+      weight: 1.4
+      lang: en
+      tags: [google, gemini, deepmind]
+
+    - name: "Perplexity blog"
+      url: "https://www.perplexity.ai/hub/blog/rss.xml"
+      weight: 1.1
+      lang: en
+      tags: [perplexity, search-ai]
+
+    - name: "Mistral news"
+      url: "https://mistral.ai/news/rss.xml"
+      weight: 1.0
+      lang: en
+      tags: [mistral, open-models]
+
+  # --- Agentic / engineering side (matters for design-eng audience) ---
+  agentic:
+    - name: "Anthropic engineering"
+      url: "https://www.anthropic.com/engineering/rss.xml"
+      weight: 1.5
+      lang: en
+      tags: [agents, mcp, engineering]
+      notes: "Where deep agent docs ship."
+
+    - name: "Vercel blog"
+      url: "https://vercel.com/atom"
+      weight: 1.3
+      lang: en
+      tags: [vercel, ai-sdk, dx]
+
+    - name: "Linear changelog"
+      url: "https://linear.app/changelog/feed.atom"
+      weight: 1.2
+      lang: en
+      tags: [linear, ai-workflows, product]
+
+    - name: "Replit blog"
+      url: "https://blog.replit.com/rss.xml"
+      weight: 1.2
+      lang: en
+      tags: [replit, agent, code]
+
+    - name: "Latent Space (swyx)"
+      url: "https://www.latent.space/feed"
+      weight: 1.5
+      lang: en
+      tags: [substack, ai-eng, latent-space]
+      notes: "Best AI eng publication. Often relevant to design tools."
+
+    - name: "Every.to"
+      url: "https://every.to/feed.xml"
+      weight: 1.3
+      lang: en
+      tags: [every, ai-workflows]
+
+  # --- Thought leaders (Substacks, blogs) ---
+  thought_leaders:
+    - name: "Pietro Schirano"
+      url: "https://pietroschirano.substack.com/feed"
+      weight: 1.3
+      lang: en
+      tags: [substack, ai-design, magic-patterns]
+      notes: "status: needs_verification — substack URL may differ."
+
+    - name: "Linus Ekenstam"
+      url: "https://linusekenstam.substack.com/feed"
+      weight: 1.2
+      lang: en
+      tags: [substack, ai-tools]
+      notes: "status: needs_verification."
+
+    - name: "Rauno Freiberg"
+      url: "https://rauno.me/rss.xml"
+      weight: 1.4
+      lang: en
+      tags: [design-eng, motion, rauno]
+      notes: "Reference for design engineering."
+
+    - name: "Mckay Wrigley"
+      url: "https://mckaywrigley.substack.com/feed"
+      weight: 1.2
+      lang: en
+      tags: [ai-coding, workflows]
+      notes: "status: needs_verification."
+
+    - name: "AI Tidbits (Sahar Mor)"
+      url: "https://www.aitidbits.ai/feed"
+      weight: 1.3
+      lang: en
+      tags: [substack, ai-daily]
+
+    - name: "The Pragmatic Engineer"
+      url: "https://newsletter.pragmaticengineer.com/feed"
+      weight: 1.2
+      lang: en
+      tags: [substack, eng, ai-ops]
+
+  # --- Ukrainian voices (UA segment — community building) ---
+  # IMPORTANT: I (Claude) don't have reliable 2026 data on which Ukrainian AI-design
+  # voices are active. Below is a sparse seed — please fill in:
+  #   - UA dizainery you follow on Substack / Medium / personal blogs
+  #   - UA Telegram channels in AI x design space
+  #   - Projector / Bandurra / other UA design education orgs
+  # Adding UA content is critical for community resonance.
+  ukrainian:
+    - name: "Projector Institute blog"
+      url: "https://prjctr.com/mag/rss"
+      weight: 1.2
+      lang: uk
+      tags: [ua, education, design]
+      notes: "status: needs_verification — fallback URL: prjctr.com/blog."
+
+    - name: "Telegraf.design"
+      url: "https://telegraf.design/feed/"
+      weight: 1.1
+      lang: uk
+      tags: [ua, design, magazine]
+      notes: "status: needs_verification — may not be active in 2026."
+
+    # TODO: Alex to add:
+    # - UA AI-design Substack-и які ти читаєш
+    # - Особисті блоги UA дизайнерів (Medium / hashnode / personal)
+    # - Українські випускники Apple Design Awards, Awwwards
+    # - Канали типу @projector, @bandurra (якщо активні)
+    #
+    # Формат додавання:
+    # - name: "Назва"
+    #   url: "https://..."
+    #   weight: 1.0-1.3
+    #   lang: uk
+    #   tags: [ua, design]
+
+  # --- Modern frontend ecosystem (AI generates this — track what's hot) ---
+  modern_frontend:
+    - name: "shadcn/ui releases"
+      url: "https://github.com/shadcn-ui/ui/releases.atom"
+      weight: 1.4
+      lang: en
+      tags: [shadcn, components, ai]
+      notes: "Verified working."
+
+    - name: "Tailwind CSS blog"
+      url: "https://tailwindcss.com/feeds/feed.xml"
+      weight: 1.3
+      lang: en
+      tags: [tailwind, css]
+
+    - name: "Origin UI releases"
+      url: "https://github.com/origin-space/originui/releases.atom"
+      weight: 1.1
+      lang: en
+      tags: [origin-ui, components]
+
+    - name: "Aceternity UI"
+      url: "https://ui.aceternity.com/rss.xml"
+      weight: 1.0
+      lang: en
+      tags: [aceternity, animations]
+      notes: "status: needs_verification."
+
+    - name: "Magic UI"
+      url: "https://magicui.design/blog/rss.xml"
+      weight: 1.0
+      lang: en
+      tags: [magic-ui, animations]
+      notes: "status: needs_verification."
+
+  # --- Conferences (occasional but huge bursts of news) ---
+  conferences:
+    - name: "Figma Config (via Figma blog category)"
+      url: "https://www.figma.com/blog/category/config/feed/"
+      weight: 1.6
+      lang: en
+      tags: [conference, figma, config]
+      notes: "status: needs_verification — fallback: filter Figma blog by 'config' keyword."
+
+    - name: "Apple Developer News (WWDC, HIG)"
+      url: "https://developer.apple.com/news/rss/news.rss"
+      weight: 1.3
+      lang: en
+      tags: [conference, apple, wwdc, hig]
+
+    - name: "Google Developers Blog (I/O, Gemini)"
+      url: "https://developers.googleblog.com/feeds/posts/default?alt=rss"
+      weight: 1.2
+      lang: en
+      tags: [conference, google, io]
+
+    - name: "AI Engineer (Latent Space conference)"
+      url: "https://www.ai.engineer/blog/rss.xml"
+      weight: 1.4
+      lang: en
+      tags: [conference, ai-engineer, summit]
+      notes: "Run by swyx — Latent Space already covers it deeply. status: needs_verification."
+
+    - name: "Adobe MAX (via Adobe blog Firefly tag)"
+      url: "https://blog.adobe.com/en/topics/adobe-max/rss"
+      weight: 1.0
+      lang: en
+      tags: [conference, adobe, max]
+
+    - name: "Smashing Conf recaps"
+      url: "https://www.smashingmagazine.com/category/events/feed/"
+      weight: 1.0
+      lang: en
+      tags: [conference, smashing]
+      notes: "status: needs_verification."
+
+  # --- arXiv research papers (cs.HC + AI for design) ---
+  # Heavy filter needed — most papers are noise. Logic:
+  # - Pre-filter by keywords: "design", "UI", "interface", "agent", "generative"
+  # - Claude scoring with high threshold (only score 9+ publishes, 1/week max)
+  # - Goal: 1 "research drop" rubric per week, not daily
+  arxiv:
+    - name: "arXiv cs.HC (Human-Computer Interaction)"
+      url: "https://export.arxiv.org/rss/cs.HC"
+      weight: 0.6
+      lang: en
+      tags: [research, papers, hci, low-volume]
+      notes: "Apply heavy keyword filter in agent. Max 1 publication/week from this source."
+
+    - name: "arXiv cs.AI (Artificial Intelligence)"
+      url: "https://export.arxiv.org/rss/cs.AI"
+      weight: 0.4
+      lang: en
+      tags: [research, papers, ai, very-noisy]
+      notes: "Very noisy — filter by 'agent' / 'UI' / 'multimodal' / 'design' keywords."
+
+  # --- Twitter / X (via xcancel.com Nitter fork) ---
+  twitter:
+    - name: "Pietro Schirano (X)"
+      url: "https://xcancel.com/skirano/rss"
+      weight: 1.2
+      lang: en
+      tags: [twitter, ai-design]
+
+    - name: "Linus Ekenstam (X)"
+      url: "https://xcancel.com/LinusEkenstam/rss"
+      weight: 1.1
+      lang: en
+      tags: [twitter, ai-tools]
+
+    - name: "Soren Iverson (X)"
+      url: "https://xcancel.com/sorenIverson/rss"
+      weight: 1.1
+      lang: en
+      tags: [twitter, satire, ai]
+
+    - name: "Yuhki Yamashita / Figma CPO (X)"
+      url: "https://xcancel.com/yuhkiyam/rss"
+      weight: 1.2
+      lang: en
+      tags: [twitter, figma]
+
+    - name: "Logan Kilpatrick / Google AI (X)"
+      url: "https://xcancel.com/OfficialLoganK/rss"
+      weight: 1.0
+      lang: en
+      tags: [twitter, google-ai]
+
+    - name: "Mckay Wrigley (X)"
+      url: "https://xcancel.com/mckaywrigley/rss"
+      weight: 1.1
+      lang: en
+      tags: [twitter, ai-coding]
+
+    - name: "Theo / t3.gg (X)"
+      url: "https://xcancel.com/theo/rss"
+      weight: 1.0
+      lang: en
+      tags: [twitter, frontend, ai]
+
+    - name: "Guillermo Rauch / Vercel (X)"
+      url: "https://xcancel.com/rauchg/rss"
+      weight: 1.0
+      lang: en
+      tags: [twitter, vercel, v0]
+
+
+layer_2_signals:
+  # Don't generate new content. If URL from Layer 1 also appears here with high
+  # engagement → score boost +2.
+
+  hacker_news:
+    - name: "HN front page (200+ points)"
+      url: "https://hnrss.org/frontpage?points=200"
+      weight: 1.0
+      lang: en
+      tags: [hn, signal]
+
+    - name: "HN — AI/agent keywords"
+      url: "https://hnrss.org/newest?q=AI+OR+agent+OR+LLM+OR+Claude+OR+Cursor+OR+Lovable&points=100"
+      weight: 1.0
+      lang: en
+      tags: [hn, ai, signal]
+
+  reddit:
+    - name: "r/ClaudeAI (top weekly)"
+      url: "https://www.reddit.com/r/ClaudeAI/top/.rss?t=week"
+      weight: 1.1
+      lang: en
+      tags: [reddit, claude, signal]
+
+    - name: "r/ChatGPTCoding (top weekly)"
+      url: "https://www.reddit.com/r/ChatGPTCoding/top/.rss?t=week"
+      weight: 1.0
+      lang: en
+      tags: [reddit, ai-coding, signal]
+
+    - name: "r/cursor (top weekly)"
+      url: "https://www.reddit.com/r/cursor/top/.rss?t=week"
+      weight: 1.0
+      lang: en
+      tags: [reddit, cursor, signal]
+
+    - name: "r/midjourney (top weekly)"
+      url: "https://www.reddit.com/r/midjourney/top/.rss?t=week"
+      weight: 0.9
+      lang: en
+      tags: [reddit, visual-ai, signal]
+
+    - name: "r/StableDiffusion (top weekly)"
+      url: "https://www.reddit.com/r/StableDiffusion/top/.rss?t=week"
+      weight: 0.9
+      lang: en
+      tags: [reddit, visual-ai, signal]
+
+    - name: "r/UXDesign (top weekly)"
+      url: "https://www.reddit.com/r/UXDesign/top/.rss?t=week"
+      weight: 0.9
+      lang: en
+      tags: [reddit, ux, signal]
+
+  product_hunt:
+    - name: "Product Hunt — AI category"
+      url: "https://www.producthunt.com/feed?category=artificial-intelligence"
+      weight: 1.2
+      lang: en
+      tags: [ph, ai, signal]
+      notes: "status: needs_verification."
+
+    - name: "Product Hunt — Design Tools"
+      url: "https://www.producthunt.com/feed?category=design-tools"
+      weight: 1.1
+      lang: en
+      tags: [ph, design, signal]
+
+  github:
+    - name: "GitHub Trending — TypeScript (daily)"
+      url: "https://mshibanami.github.io/GitHubTrendingRSS/daily/typescript.xml"
+      weight: 0.9
+      lang: en
+      tags: [github, ts, signal]
+
+    - name: "GitHub Trending — Python (daily)"
+      url: "https://mshibanami.github.io/GitHubTrendingRSS/daily/python.xml"
+      weight: 0.9
+      lang: en
+      tags: [github, python, ai-libs, signal]
+
+  # --- Telegram channels (via Telethon, requires API setup) ---
+  # IMPORTANT: signal-only. We DO NOT republish their content.
+  # Logic: if 3+ design channels cover topic X this week → boost +2 to that topic.
+  # Russian-language channels REMOVED for brand purity (UA positioning).
+  telegram:
+    - name: "@dsgnua"
+      url: "tg://channel/dsgnua"
+      weight: 1.2
+      lang: uk
+      tags: [tg, ua, design]
+      notes: "Ukrainian design channel. status: needs_verification (alive in 2026?)."
+
+    - name: "@uxfox"
+      url: "tg://channel/uxfox"
+      weight: 1.0
+      lang: uk
+      tags: [tg, ua, ux]
+      notes: "Verify it's UA and active."
+
+    - name: "@intelligentdesign"
+      url: "tg://channel/intelligentdesign"
+      weight: 1.3
+      lang: en
+      tags: [tg, ai-design]
+      notes: "Verify language (likely EN) and content quality."
+
+
+layer_3_competitors:
+  # AI/design digests — used for meta-curation.
+  # If 3+ digests cover same topic → 🔥 Consensus pick.
+  # If we score 9+ but only 0-1 digest covered → 💎 Hidden gem.
+
+  ai_digests:
+    - name: "TLDR AI"
+      url: "https://tldr.tech/ai/rss"
+      weight: 1.6
+      lang: en
+      tags: [digest, ai, daily]
+      notes: "Largest daily AI digest. Strongest signal."
+
+    - name: "The Rundown AI"
+      url: "https://www.therundown.ai/feed"
+      weight: 1.5
+      lang: en
+      tags: [digest, ai, daily]
+
+    - name: "Ben's Bites"
+      url: "https://bensbites.beehiiv.com/feed"
+      weight: 1.4
+      lang: en
+      tags: [digest, ai, daily]
+
+    - name: "AI Design Weekly"
+      url: "https://aidesignweekly.com/feed"
+      weight: 1.3
+      lang: en
+      tags: [digest, ai-design]
+      notes: "status: needs_verification — newer publication."
+
+    - name: "Designing with AI"
+      url: "https://designingwith.ai/feed"
+      weight: 1.3
+      lang: en
+      tags: [digest, ai-design]
+      notes: "status: needs_verification."
+
+  design_digests:
+    - name: "TLDR Design"
+      url: "https://tldr.tech/design/rss"
+      weight: 1.4
+      lang: en
+      tags: [digest, design, daily]
+      notes: "Keep — covers AI-design overlap heavily."
+
+    - name: "Sidebar.io"
+      url: "https://sidebar.io/feed.xml"
+      weight: 1.3
+      lang: en
+      tags: [digest, design, daily]
+
+
+# =============================================================================
+# DROPPED IN v2 (kept here so we don't re-add)
+# =============================================================================
+dropped_v2:
+  reason: "Off-brand for AI-native channel. Too academic / too generalist."
+  items:
+    - "Nielsen Norman Group"
+    - "A List Apart"
+    - "UX Booth"
+    - "Boxes and Arrows"
+    - "UX Movement"
+    - "UX Planet"
+    - "Prototypr"
+    - "UX Collective"  # still useful but too noisy — bring back later if needed
+    - "Smashing Magazine"  # excellent but rarely AI-focused
+    - "Built for Mars"  # gold but classical UX teardowns
+    - "Growth.Design"  # same
+    - "Dribbble / SiteInspire / Awwwards"  # visual inspiration, not AI
+
+# =============================================================================
+# DEAD / KNOWN-BROKEN
+# =============================================================================
+dead:
+  - name: "InVision Inside Design"
+    reason: "InVision shut down (2024)."
+
+  - name: "Designer News"
+    reason: "Largely inactive since 2023."
