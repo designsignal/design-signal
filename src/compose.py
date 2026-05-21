@@ -20,13 +20,14 @@ def _get_model():
     if _MODEL is None:
         genai.configure(api_key=Config.GEMINI_API_KEY)
         _MODEL = genai.GenerativeModel(
-            Config.GEMINI_MODEL,
+            Config.GEMINI_COMPOSING_MODEL,
             generation_config={
                 "temperature": 0.7,        # more creative for writing
-                "max_output_tokens": 800,
+                "max_output_tokens": 1200,
             },
         )
         _PROMPT = _load_prompt()
+        print(f"Composing model: {Config.GEMINI_COMPOSING_MODEL}")
     return _MODEL
 
 

@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 import google.generativeai as genai
+from google.api_core import exceptions as gax
 
 from .config import Config
 
@@ -19,7 +20,7 @@ def _load_prompt() -> str:
 def _init_model():
     genai.configure(api_key=Config.GEMINI_API_KEY)
     return genai.GenerativeModel(
-        Config.GEMINI_MODEL,
+        Config.GEMINI_SCORING_MODEL,
         generation_config={
             "temperature": 0.3,           # consistency over creativity for scoring
             "response_mime_type": "application/json",
@@ -88,8 +89,18 @@ def score_item(item: dict, retries: int = 2) -> dict:
                     "score_reason": data.get("reason", ""),
                     "topic_tags": data.get("topic_tags", []),
                 }
+        except gax.ResourceExhausted as e:
+            # Honor Gemini's recommended retry delay (extracted from error)
+            wait = 30
+            match = re.search(r"retry_delay\s*\{\s*seconds:\s*(\d+)", str(e))
+            if match:
+                wait = int(match.group(1)) + 2
+            print(f"  [rate-limit] sleeping {wait}s before retry...")
+            time.sleep(wait)
+            continue
         except Exception as e:
-            print(f"  [score-err] {item.get('title', '')[:50]}: {type(e).__name__}: {e}")
+            short_err = str(e).split("\n")[0][:120]
+            print(f"  [score-err] {item.get('title', '')[:40]}: {type(e).__name__}: {short_err}")
             if attempt < retries:
                 time.sleep(2 ** attempt)  # backoff
                 continue
@@ -99,9 +110,9 @@ def score_item(item: dict, retries: int = 2) -> dict:
     return {**item, "score": 0.0, "score_raw": 0.0, "score_reason": "scoring failed", "topic_tags": []}
 
 
-def score_batch(items: list[dict], rpm_limit: int = 12) -> list[dict]:
-    """Score items one by one with rate limiting (Gemini free tier = 15 RPM)."""
-    print(f"Scoring {len(items)} items with {Config.GEMINI_MODEL}...")
+def score_batch(items: list[dict], rpm_limit: int = 60) -> list[dict]:
+    """Score items with rate limiting. Paid tier supports 1000+ RPM; 60 is generous safety margin."""
+    print(f"Scoring {len(items)} items with {Config.GEMINI_SCORING_MODEL}...")
     delay = 60.0 / rpm_limit
     scored = []
     for i, item in enumerate(items, 1):

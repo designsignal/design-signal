@@ -27,13 +27,14 @@ from .score import score_batch
 
 # Don't score articles older than this — avoid scoring noise
 MAX_ARTICLE_AGE_DAYS = 14
-# Don't score more than this per run — keeps Gemini cost predictable
+# Don't score more than this per run — paid tier handles 80 easily, ~$0.04 per run
 MAX_TO_SCORE_PER_RUN = 80
 
 
 def main() -> int:
     print(f"=== Design Signal run @ {datetime.now(timezone.utc).isoformat()} ===")
-    print(f"Model: {Config.GEMINI_MODEL}")
+    print(f"Scoring model:   {Config.GEMINI_SCORING_MODEL}")
+    print(f"Composing model: {Config.GEMINI_COMPOSING_MODEL}")
     print(f"Min score to publish: {Config.MIN_SCORE_TO_PUBLISH}")
     print(f"Max posts per run: {Config.MAX_POSTS_PER_RUN}")
     print(f"Dry run: {Config.DRY_RUN}")
