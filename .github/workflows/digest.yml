@@ -40,7 +40,7 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_USER_ID: ${{ secrets.TELEGRAM_USER_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: 'gemini-1.5-flash'
+          GEMINI_MODEL: 'gemini-2.5-flash'
           MIN_SCORE_TO_PUBLISH: '7'
           MAX_POSTS_PER_RUN: '2'
           DRY_RUN: 'false'
