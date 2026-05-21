@@ -27,8 +27,8 @@ from .score import score_batch
 
 # Don't score articles older than this — avoid scoring noise
 MAX_ARTICLE_AGE_DAYS = 14
-# Don't score more than this per run — paid tier handles 80 easily, ~$0.04 per run
-MAX_TO_SCORE_PER_RUN = 80
+# Ultra-conservative batch — safe under any free tier limits
+MAX_TO_SCORE_PER_RUN = 20
 
 
 def main() -> int:

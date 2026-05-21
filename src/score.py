@@ -110,8 +110,8 @@ def score_item(item: dict, retries: int = 2) -> dict:
     return {**item, "score": 0.0, "score_raw": 0.0, "score_reason": "scoring failed", "topic_tags": []}
 
 
-def score_batch(items: list[dict], rpm_limit: int = 60) -> list[dict]:
-    """Score items with rate limiting. Paid tier supports 1000+ RPM; 60 is generous safety margin."""
+def score_batch(items: list[dict], rpm_limit: int = 10) -> list[dict]:
+    """Score items with rate limiting. 10 RPM = 6s between calls — safe even on free tier."""
     print(f"Scoring {len(items)} items with {Config.GEMINI_SCORING_MODEL}...")
     delay = 60.0 / rpm_limit
     scored = []
