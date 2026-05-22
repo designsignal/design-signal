@@ -8,7 +8,7 @@ name: Design Signal Digest
 #   Cron line: '30 6 * * *'
 on:
   schedule:
-    - cron: '54 * * * *'         # every hour at :54 past (UTC) — off-peak window
+    - cron: '57 * * * *'         # every hour at :57 past (UTC) — off-peak window
   workflow_dispatch:             # allows manual triggering from GitHub UI
 
 # Allow workflow to commit state.json back to repo
