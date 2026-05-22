@@ -16,7 +16,7 @@ permissions:
 jobs:
   run-digest:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30   # extra room for outage-recovery sleep (10 min) + retry pass
 
     steps:
       - name: Checkout repo
