@@ -30,6 +30,9 @@ from .score import score_batch
 MAX_ARTICLE_AGE_DAYS = 3
 # Top-N freshest items per run. With 3 runs/day × 15 = ~45 articles/day max.
 MAX_TO_SCORE_PER_RUN = 15
+# Max items per single source per run. Stops arXiv (20+ papers/day) from
+# flooding the freshest-15 slots and starving real AI-design news sources.
+MAX_PER_SOURCE = 2
 
 
 def main() -> int:
@@ -61,13 +64,22 @@ def main() -> int:
         print("Nothing new to consider. Done.")
         return 0
 
-    # 4. Sort by recency (newest first) and cap items to score per run.
-    # Ensures we spend tokens on the FRESHEST articles, not arbitrary feed order.
+    # 4. Sort by recency (newest first), then apply per-source cap, then take top-N.
+    # Per-source cap prevents any single feed (e.g. arXiv with 20+ papers/day)
+    # from monopolizing the freshest-N slots.
     epoch = datetime.min.replace(tzinfo=timezone.utc)
     unseen_sorted = sorted(unseen, key=lambda x: x.get("published_at") or epoch, reverse=True)
-    to_score = unseen_sorted[:MAX_TO_SCORE_PER_RUN]
-    if len(unseen) > MAX_TO_SCORE_PER_RUN:
-        print(f"Capping to top {MAX_TO_SCORE_PER_RUN} most-recent items for scoring")
+    per_source_count: dict[str, int] = {}
+    diversified: list[dict] = []
+    for itm in unseen_sorted:
+        src = itm.get("source_name", "unknown")
+        if per_source_count.get(src, 0) >= MAX_PER_SOURCE:
+            continue
+        per_source_count[src] = per_source_count.get(src, 0) + 1
+        diversified.append(itm)
+    to_score = diversified[:MAX_TO_SCORE_PER_RUN]
+    print(f"After per-source cap ({MAX_PER_SOURCE}/source): {len(diversified)} candidates, "
+          f"scoring top {len(to_score)}")
 
     # 5. Score
     scored = score_batch(to_score)

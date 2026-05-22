@@ -95,6 +95,12 @@ def score_item(item: dict, retries: int = 2) -> dict:
             print(f"  [rate-limit] sleeping {wait}s before retry...")
             time.sleep(wait)
             continue
+        except anthropic.InternalServerError as e:
+            # 529 overloaded_error — Anthropic transient overload, longer backoff
+            wait = 15 * (2 ** attempt)  # 15s, 30s, 60s
+            print(f"  [overloaded] sleeping {wait}s before retry (attempt {attempt + 1}/{retries + 1})...")
+            time.sleep(wait)
+            continue
         except (anthropic.APIError, anthropic.APIConnectionError) as e:
             short_err = str(e).split("\n")[0][:120]
             print(f"  [score-err] {item.get('title', '')[:40]}: {type(e).__name__}: {short_err}")

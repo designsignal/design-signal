@@ -397,19 +397,20 @@ layer_1_primary:
   # - Claude scoring with high threshold (only score 9+ publishes, 1/week max)
   # - Goal: 1 "research drop" rubric per week, not daily
   arxiv:
-    - name: "arXiv cs.HC (Human-Computer Interaction)"
-      url: "https://export.arxiv.org/rss/cs.HC"
-      weight: 0.6
-      lang: en
-      tags: [research, papers, hci, low-volume]
-      notes: "Apply heavy keyword filter in agent. Max 1 publication/week from this source."
+    # cs.HC disabled — too academic, flooded freshest-N with HCI methodology papers
+    # not aligned with channel theme. Re-enable later if we add research-specific rubric.
+    # - name: "arXiv cs.HC (Human-Computer Interaction)"
+    #   url: "https://export.arxiv.org/rss/cs.HC"
+    #   weight: 0.6
+    #   lang: en
+    #   tags: [research, papers, hci, low-volume]
 
     - name: "arXiv cs.AI (Artificial Intelligence)"
       url: "https://export.arxiv.org/rss/cs.AI"
-      weight: 0.4
+      weight: 0.3   # aggressive suppression — most arXiv AI papers aren't about design
       lang: en
       tags: [research, papers, ai, very-noisy]
-      notes: "Very noisy — filter by 'agent' / 'UI' / 'multimodal' / 'design' keywords."
+      notes: "Per-source cap = 2/run in main.py. Only AI-design-relevant papers get through."
 
   # --- Twitter / X (via xcancel.com Nitter fork) ---
   twitter:
