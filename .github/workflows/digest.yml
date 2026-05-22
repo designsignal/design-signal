@@ -1,11 +1,12 @@
 name: Design Signal Digest
 
-# Cron runs every 6 hours (08:00, 14:00, 20:00, 02:00 Kyiv time approx.)
-# GitHub crons use UTC; Kyiv is UTC+2 (winter) / UTC+3 (summer)
-# Change schedule to taste — keep total runs/day reasonable to fit free tier.
+# TESTING MODE: every hour to quickly evaluate post quality.
+# PRODUCTION TARGET: once a day at 09:30 Kyiv (summer UTC+3) = 06:30 UTC.
+#   Cron line: '30 6 * * *'
+# GitHub Actions cron drifts 5-15 min — that's fine for our use case.
 on:
   schedule:
-    - cron: '0 6,12,18 * * *'   # 09:00, 15:00, 21:00 Kyiv (winter)
+    - cron: '0 * * * *'         # every hour, on the hour (UTC)
   workflow_dispatch:             # allows manual triggering from GitHub UI
 
 # Allow workflow to commit state.json back to repo
@@ -43,7 +44,7 @@ jobs:
           CLAUDE_SCORING_MODEL: 'claude-haiku-4-5-20251001'
           CLAUDE_COMPOSING_MODEL: 'claude-sonnet-4-6'
           MIN_SCORE_TO_PUBLISH: '6'
-          MAX_POSTS_PER_RUN: '2'
+          MAX_POSTS_PER_RUN: '3'
           DRY_RUN: 'false'
           PYTHONUNBUFFERED: '1'
         run: python -u -m src.main
