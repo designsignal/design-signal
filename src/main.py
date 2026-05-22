@@ -4,10 +4,10 @@ Design Signal — main orchestrator.
 Pipeline:
   1. Fetch all RSS sources (Layer 1)
   2. Dedupe vs state.json
-  3. Filter recent (last 14 days) to avoid posting old articles
-  4. Score each new article with Gemini
+  3. Filter recent (last 3 days) — daily digest needs fresh content
+  4. Score each new article with Claude Haiku
   5. Pick top N (above threshold)
-  6. Compose Ukrainian post for each
+  6. Compose Ukrainian post for each with Claude Sonnet
   7. Publish to Telegram
   8. Save state
 
@@ -25,16 +25,17 @@ from .fetch import fetch_all
 from .publish import notify_user, send_to_channel
 from .score import score_batch
 
-# Don't score articles older than this — avoid scoring noise
-MAX_ARTICLE_AGE_DAYS = 14
-# Ultra-conservative batch — safe under any free tier limits
-MAX_TO_SCORE_PER_RUN = 20
+# Don't score articles older than this — daily digest is about FRESH news.
+# Anything older than 3 days is stale and not worth spending tokens on.
+MAX_ARTICLE_AGE_DAYS = 3
+# Top-N freshest items per run. With 3 runs/day × 15 = ~45 articles/day max.
+MAX_TO_SCORE_PER_RUN = 15
 
 
 def main() -> int:
     print(f"=== Design Signal run @ {datetime.now(timezone.utc).isoformat()} ===")
-    print(f"Scoring model:   {Config.GEMINI_SCORING_MODEL}")
-    print(f"Composing model: {Config.GEMINI_COMPOSING_MODEL}")
+    print(f"Scoring model:   {Config.CLAUDE_SCORING_MODEL}")
+    print(f"Composing model: {Config.CLAUDE_COMPOSING_MODEL}")
     print(f"Min score to publish: {Config.MIN_SCORE_TO_PUBLISH}")
     print(f"Max posts per run: {Config.MAX_POSTS_PER_RUN}")
     print(f"Dry run: {Config.DRY_RUN}")
@@ -60,8 +61,11 @@ def main() -> int:
         print("Nothing new to consider. Done.")
         return 0
 
-    # 4. Cap items to score per run
-    to_score = unseen[:MAX_TO_SCORE_PER_RUN]
+    # 4. Sort by recency (newest first) and cap items to score per run.
+    # Ensures we spend tokens on the FRESHEST articles, not arbitrary feed order.
+    epoch = datetime.min.replace(tzinfo=timezone.utc)
+    unseen_sorted = sorted(unseen, key=lambda x: x.get("published_at") or epoch, reverse=True)
+    to_score = unseen_sorted[:MAX_TO_SCORE_PER_RUN]
     if len(unseen) > MAX_TO_SCORE_PER_RUN:
         print(f"Capping to top {MAX_TO_SCORE_PER_RUN} most-recent items for scoring")
 

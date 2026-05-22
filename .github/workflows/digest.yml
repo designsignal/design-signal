@@ -39,9 +39,9 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_USER_ID: ${{ secrets.TELEGRAM_USER_ID }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_SCORING_MODEL: 'gemini-2.5-flash'
-          GEMINI_COMPOSING_MODEL: 'gemini-2.5-pro'
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_SCORING_MODEL: 'claude-haiku-4-5-20251001'
+          CLAUDE_COMPOSING_MODEL: 'claude-sonnet-4-6'
           MIN_SCORE_TO_PUBLISH: '7'
           MAX_POSTS_PER_RUN: '2'
           DRY_RUN: 'false'

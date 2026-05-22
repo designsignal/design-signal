@@ -4,28 +4,33 @@ Your job: score the article below from 0 to 10 on how relevant and valuable it i
 
 OUR AUDIENCE:
 - Ukrainian product designers (mid-to-senior level)
-- Interested in: AI design tools (Lovable, v0, Cursor, Figma AI, Claude, Stitch), agentic workflows, modern design systems, AI x design intersection, product velocity
-- NOT interested in: basic UX intro content ("10 typography rules"), purely visual inspiration without substance, generic SaaS marketing
+- Interested in: AI design tools (Lovable, v0, Cursor, Figma AI, Claude, Stitch, Bolt), generative UI, agentic design workflows, AI x design intersection, modern design systems, product velocity through AI
+- NOT interested in: basic UX intro content, "10 typography rules", purely visual inspiration without substance, generic SaaS marketing, classical UX research articles, accessibility checklists without AI angle
 
-SCORING RUBRIC (be strict — most articles should score 4-7, only truly excellent ones score 8+):
+CORE QUESTION: Does this article help a working product designer ship better/faster WITH AI tools, or understand where AI is moving the design industry?
+- YES → score 7+
+- NO → score 5 or below, regardless of how good the writing is
 
-10 — Must-publish. A landmark piece: new AI design tool launch, major Figma/Anthropic/OpenAI release, viral case study, paradigm-shifting workflow article.
-9  — Excellent. Deep teardown, novel insight, must-read for our niche.
-8  — Strong. Worth publishing. Solid take on relevant tool/trend.
-7  — Good but borderline. Skip unless slow news day.
-6  — Decent but generic.
-5  — Average industry post.
-4  — Weak — too basic, too narrow, or off-topic.
-0-3 — Off-topic, spam, or extremely low quality.
+SCORING RUBRIC (be strict — most articles should score 3-6, only truly relevant ones score 7+):
+
+10 — Must-publish. Major AI design tool launch, Figma/Anthropic/OpenAI/Google design release, paradigm-shifting AI-design workflow piece.
+9  — Excellent. Deep teardown of an AI design tool, novel agentic workflow, exclusive case study.
+8  — Strong. Worth publishing. Solid take on relevant AI tool, prompt engineering for designers, or AI-native design pattern.
+7  — Good. Useful AI-design content with clear takeaway.
+6  — Borderline. Touches AI but generic or shallow.
+5  — Off-niche. Good design content but no AI angle.
+4  — Weak — too basic or too narrow.
+0-3 — Off-topic, spam, pure inspiration galleries, classical UX without AI.
 
 BOOST factors (add up to +2):
-+1 — Article is from a top source (Anthropic, OpenAI, Figma, Linear, Vercel, Lovable, Cursor)
-+1 — Article covers a NEW tool launch, NEW feature drop, or NEW research
-+1 — Article includes practical workflow / how-to / case study (not just opinion)
++1 — Article is from a top source (Anthropic, OpenAI, Figma, Linear, Vercel, Lovable, Cursor, Vercel, Stripe)
++1 — Article covers a NEW tool launch, NEW feature drop, or NEW research from the last 7 days
++1 — Article includes practical workflow / hands-on / case study (not just opinion)
 
 PENALTY factors (subtract):
--2 — Article is a generic listicle ("10 best...")
--2 — Article is older than 30 days
+-3 — Article has zero AI / agent / generative angle (we are an AI-driven design channel, period)
+-2 — Article is a generic listicle ("10 best...", "Top X...")
+-2 — Article is older than 7 days (we publish FRESH news)
 -1 — Article is purely promotional / press release with no insight
 
 ARTICLE:

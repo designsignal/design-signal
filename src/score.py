@@ -1,14 +1,12 @@
 """
-Scores articles 0-10 using Gemini. Strict JSON output expected.
+Scores articles 0-10 using Claude Haiku. Strict JSON output expected.
 """
 
 import json
 import re
 import time
-from pathlib import Path
 
-import google.generativeai as genai
-from google.api_core import exceptions as gax
+import anthropic
 
 from .config import Config
 
@@ -17,36 +15,24 @@ def _load_prompt() -> str:
     return (Config.PROMPTS_DIR / "scoring.txt").read_text()
 
 
-def _init_model():
-    genai.configure(api_key=Config.GEMINI_API_KEY)
-    return genai.GenerativeModel(
-        Config.GEMINI_SCORING_MODEL,
-        generation_config={
-            "temperature": 0.3,           # consistency over creativity for scoring
-            "response_mime_type": "application/json",
-            "max_output_tokens": 300,
-        },
-    )
-
-
-_MODEL = None
+_CLIENT = None
 _PROMPT = None
 
 
-def _get_model():
-    global _MODEL, _PROMPT
-    if _MODEL is None:
-        _MODEL = _init_model()
+def _get_client():
+    global _CLIENT, _PROMPT
+    if _CLIENT is None:
+        _CLIENT = anthropic.Anthropic(api_key=Config.ANTHROPIC_API_KEY)
         _PROMPT = _load_prompt()
-    return _MODEL
+    return _CLIENT
 
 
 def _parse_json(text: str) -> dict | None:
-    """Tolerant JSON extraction — Gemini sometimes wraps in markdown."""
+    """Tolerant JSON extraction — model sometimes wraps in markdown."""
     if not text:
         return None
-    # Strip markdown fences if present
     text = text.strip()
+    # Strip markdown fences if present
     text = re.sub(r"^```(?:json)?\s*", "", text)
     text = re.sub(r"\s*```$", "", text)
     try:
@@ -64,19 +50,27 @@ def _parse_json(text: str) -> dict | None:
 
 def score_item(item: dict, retries: int = 2) -> dict:
     """Returns item with added 'score', 'score_reason', 'topic_tags' keys."""
-    model = _get_model()
+    client = _get_client()
+    # Tight summary cap — saves ~50% input tokens vs old 1500-char cap.
+    # Haiku doesn't need long context for scoring decisions.
     prompt = _PROMPT.format(
         title=item.get("title", "")[:300],
         source_name=item.get("source_name", "unknown"),
         source_tags=", ".join(item.get("source_tags", [])),
         url=item.get("url", ""),
-        summary=item.get("summary", "")[:1500],
+        summary=item.get("summary", "")[:800],
     )
 
     for attempt in range(retries + 1):
         try:
-            resp = model.generate_content(prompt)
-            data = _parse_json(resp.text)
+            resp = client.messages.create(
+                model=Config.CLAUDE_SCORING_MODEL,
+                max_tokens=300,
+                temperature=0.3,  # consistency over creativity for scoring
+                messages=[{"role": "user", "content": prompt}],
+            )
+            text = "".join(block.text for block in resp.content if hasattr(block, "text"))
+            data = _parse_json(text)
             if data and "score" in data:
                 raw_score = float(data.get("score", 0))
                 # Apply source weight as multiplier (small boost for trusted sources)
@@ -89,20 +83,29 @@ def score_item(item: dict, retries: int = 2) -> dict:
                     "score_reason": data.get("reason", ""),
                     "topic_tags": data.get("topic_tags", []),
                 }
-        except gax.ResourceExhausted as e:
-            # Honor Gemini's recommended retry delay (extracted from error)
+        except anthropic.RateLimitError as e:
+            # Honor Anthropic's retry-after header if present
             wait = 30
-            match = re.search(r"retry_delay\s*\{\s*seconds:\s*(\d+)", str(e))
-            if match:
-                wait = int(match.group(1)) + 2
+            try:
+                retry_after = e.response.headers.get("retry-after")
+                if retry_after:
+                    wait = int(retry_after) + 2
+            except (AttributeError, ValueError, TypeError):
+                pass
             print(f"  [rate-limit] sleeping {wait}s before retry...")
             time.sleep(wait)
             continue
+        except (anthropic.APIError, anthropic.APIConnectionError) as e:
+            short_err = str(e).split("\n")[0][:120]
+            print(f"  [score-err] {item.get('title', '')[:40]}: {type(e).__name__}: {short_err}")
+            if attempt < retries:
+                time.sleep(2 ** attempt)  # exponential backoff
+                continue
         except Exception as e:
             short_err = str(e).split("\n")[0][:120]
             print(f"  [score-err] {item.get('title', '')[:40]}: {type(e).__name__}: {short_err}")
             if attempt < retries:
-                time.sleep(2 ** attempt)  # backoff
+                time.sleep(2 ** attempt)
                 continue
         break
 
@@ -110,15 +113,15 @@ def score_item(item: dict, retries: int = 2) -> dict:
     return {**item, "score": 0.0, "score_raw": 0.0, "score_reason": "scoring failed", "topic_tags": []}
 
 
-def score_batch(items: list[dict], rpm_limit: int = 10) -> list[dict]:
-    """Score items with rate limiting. 10 RPM = 6s between calls — safe even on free tier."""
-    print(f"Scoring {len(items)} items with {Config.GEMINI_SCORING_MODEL}...")
+def score_batch(items: list[dict], rpm_limit: int = 30) -> list[dict]:
+    """Score items with rate limiting. Claude Tier 1 = 50 RPM for Haiku, 30 is safe."""
+    print(f"Scoring {len(items)} items with {Config.CLAUDE_SCORING_MODEL}...")
     delay = 60.0 / rpm_limit
     scored = []
     for i, item in enumerate(items, 1):
         result = score_item(item)
         scored.append(result)
-        if i % 10 == 0 or i == len(items):
+        if i % 5 == 0 or i == len(items):
             top = sorted(scored, key=lambda x: x["score"], reverse=True)[:3]
             top_str = "  ".join(f"{t['score']:.1f}={t['title'][:40]}" for t in top)
             print(f"  scored {i}/{len(items)} — top so far: {top_str}")

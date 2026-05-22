@@ -1,8 +1,9 @@
 """
 Composes a Telegram post in Ukrainian about a high-scoring article.
+Uses Claude Sonnet for higher-quality creative writing.
 """
 
-import google.generativeai as genai
+import anthropic
 
 from .config import Config
 
@@ -11,29 +12,22 @@ def _load_prompt() -> str:
     return (Config.PROMPTS_DIR / "compose.txt").read_text()
 
 
-_MODEL = None
+_CLIENT = None
 _PROMPT = None
 
 
-def _get_model():
-    global _MODEL, _PROMPT
-    if _MODEL is None:
-        genai.configure(api_key=Config.GEMINI_API_KEY)
-        _MODEL = genai.GenerativeModel(
-            Config.GEMINI_COMPOSING_MODEL,
-            generation_config={
-                "temperature": 0.7,        # more creative for writing
-                "max_output_tokens": 1200,
-            },
-        )
+def _get_client():
+    global _CLIENT, _PROMPT
+    if _CLIENT is None:
+        _CLIENT = anthropic.Anthropic(api_key=Config.ANTHROPIC_API_KEY)
         _PROMPT = _load_prompt()
-        print(f"Composing model: {Config.GEMINI_COMPOSING_MODEL}")
-    return _MODEL
+        print(f"Composing model: {Config.CLAUDE_COMPOSING_MODEL}")
+    return _CLIENT
 
 
 def compose_post(item: dict) -> str | None:
     """Generate Telegram-ready post text. Returns None on failure."""
-    model = _get_model()
+    client = _get_client()
     prompt = _PROMPT.format(
         title=item.get("title", "")[:300],
         source_name=item.get("source_name", "unknown"),
@@ -43,9 +37,15 @@ def compose_post(item: dict) -> str | None:
     )
 
     try:
-        resp = model.generate_content(prompt)
-        text = (resp.text or "").strip()
-        # Strip code fences if Gemini wrapped output
+        resp = client.messages.create(
+            model=Config.CLAUDE_COMPOSING_MODEL,
+            max_tokens=1200,
+            temperature=0.7,  # more creative for writing
+            messages=[{"role": "user", "content": prompt}],
+        )
+        text = "".join(block.text for block in resp.content if hasattr(block, "text"))
+        text = (text or "").strip()
+        # Strip code fences if model wrapped output
         if text.startswith("```"):
             lines = text.split("\n")
             text = "\n".join(line for line in lines if not line.strip().startswith("```"))

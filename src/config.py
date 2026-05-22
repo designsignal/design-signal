@@ -44,10 +44,10 @@ class Config:
     TELEGRAM_CHANNEL_ID = _get("TELEGRAM_CHANNEL_ID")
     TELEGRAM_USER_ID = _get("TELEGRAM_USER_ID", required=False)  # for safety-gate v2
 
-    # Gemini — separate models for scoring (cheap+fast) vs composing (quality)
-    GEMINI_API_KEY = _get("GEMINI_API_KEY")
-    GEMINI_SCORING_MODEL = _get("GEMINI_SCORING_MODEL", required=False, default="gemini-2.5-flash")
-    GEMINI_COMPOSING_MODEL = _get("GEMINI_COMPOSING_MODEL", required=False, default="gemini-2.5-pro")
+    # Anthropic — Haiku for scoring (cheap+fast), Sonnet for composing (quality)
+    ANTHROPIC_API_KEY = _get("ANTHROPIC_API_KEY")
+    CLAUDE_SCORING_MODEL = _get("CLAUDE_SCORING_MODEL", required=False, default="claude-haiku-4-5-20251001")
+    CLAUDE_COMPOSING_MODEL = _get("CLAUDE_COMPOSING_MODEL", required=False, default="claude-sonnet-4-6")
 
     # Behaviour knobs
     MIN_SCORE_TO_PUBLISH = _get_int("MIN_SCORE_TO_PUBLISH", 8)
