@@ -39,6 +39,9 @@ def send_to_channel(post_text: str, dry_run: bool = False) -> bool:
         "disable_web_page_preview": False,  # keep preview for source link
         "disable_notification": False,
     }
+    # Errors that won't be fixed by retrying — bail immediately to save time.
+    PERMANENT_ERRORS = ("forbidden", "chat not found", "bot was kicked", "not a member")
+
     for attempt in range(3):
         try:
             r = requests.post(url, json=payload, timeout=20)
@@ -49,9 +52,14 @@ def send_to_channel(post_text: str, dry_run: bool = False) -> bool:
                 return True
             else:
                 err = data.get("description", "unknown")
+                err_lower = err.lower()
                 print(f"  [pub-err attempt {attempt+1}] {err}")
+                # Permission/setup errors — no point retrying
+                if any(kw in err_lower for kw in PERMANENT_ERRORS):
+                    print(f"  [pub-fatal] permanent error, not retrying: {err}")
+                    return False
                 # Markdown parse errors → retry without markdown
-                if "can't parse" in err.lower() and attempt == 0:
+                if "can't parse" in err_lower and attempt == 0:
                     payload["parse_mode"] = ""  # plain text fallback
                     continue
                 if attempt < 2:
