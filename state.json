@@ -27,6 +27,20 @@
       "title": "Pull anomaly alert details using the Vercel CLI",
       "score": 6.54,
       "published_at": "2026-05-22T10:51:25Z"
+    },
+    {
+      "key": "591658fd28ca42c6",
+      "url": "https://vercel.com/changelog/chat-sdk-now-includes-ai-sdk-tools",
+      "title": "Chat SDK now includes AI SDK tools",
+      "score": 8.72,
+      "published_at": "2026-05-22T14:02:47Z"
+    },
+    {
+      "key": "7e5ed137447eef1c",
+      "url": "https://vercel.com/changelog/grok-build-0-1-now-available-on-vercel-ai-gateway",
+      "title": "Grok Build 0.1 now available on Vercel AI Gateway",
+      "score": 7.63,
+      "published_at": "2026-05-22T14:02:54Z"
     }
   ]
 }
