@@ -1,12 +1,14 @@
 name: Design Signal Digest
 
-# TESTING MODE: every hour to quickly evaluate post quality.
+# TESTING MODE: every hour at :45 to quickly evaluate post quality.
+# We use :45 (not :00) because GitHub Actions sheds load at the top of each
+# hour — :00 cron runs get heavily delayed or silently skipped, especially
+# for private repos. Off-peak minutes (like :45) are far more reliable.
 # PRODUCTION TARGET: once a day at 09:30 Kyiv (summer UTC+3) = 06:30 UTC.
 #   Cron line: '30 6 * * *'
-# GitHub Actions cron drifts 5-15 min — that's fine for our use case.
 on:
   schedule:
-    - cron: '0 * * * *'         # every hour, on the hour (UTC)
+    - cron: '54 * * * *'         # every hour at :54 past (UTC) — off-peak window
   workflow_dispatch:             # allows manual triggering from GitHub UI
 
 # Allow workflow to commit state.json back to repo
