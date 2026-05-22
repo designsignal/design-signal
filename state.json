@@ -6,6 +6,27 @@
       "title": "Giving Agents Computers — Ivan Burazin, Daytona",
       "score": 8.05,
       "published_at": "2026-05-22T07:28:50Z"
+    },
+    {
+      "key": "d744c2b43bfd187c",
+      "url": "https://vercel.com/changelog/qwen-3-7-max-now-available-on-vercel-ai-gateway",
+      "title": "Qwen 3.7 Max now available on Vercel AI Gateway",
+      "score": 8.72,
+      "published_at": "2026-05-22T10:51:10Z"
+    },
+    {
+      "key": "25e141fd02c9e561",
+      "url": "https://openai.com/index/ramp",
+      "title": "How Ramp engineers accelerate code review with Codex",
+      "score": 6.9,
+      "published_at": "2026-05-22T10:51:17Z"
+    },
+    {
+      "key": "2487e0b5fe8c37b4",
+      "url": "https://vercel.com/changelog/pull-anomaly-alert-details-using-the-vercel-cli",
+      "title": "Pull anomaly alert details using the Vercel CLI",
+      "score": 6.54,
+      "published_at": "2026-05-22T10:51:25Z"
     }
   ]
 }
