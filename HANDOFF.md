@@ -29,7 +29,8 @@
 | Канал створений | ✅ [@design_signal](https://t.me/design_signal) |
 | Бот налаштований (admin рівень) | ✅ |
 | GitHub репо | ✅ public — `github.com/designsignal/design-signal` |
-| GitHub Actions workflow | ✅ запускається щогодини на `:57 UTC` |
+| GitHub Actions workflow | ✅ `workflow_dispatch` only, тригериться ззовні |
+| Scheduler (cron-job.org) | ✅ щогодини о `:00 UTC` через GitHub API |
 | Anthropic API ключ | ✅ збережено в GitHub Secrets |
 | Перший пост опубліковано | ✅ ("Агенти хочуть не пісочниці...") |
 | Outage-recovery логіка | ✅ retry через 10 хв якщо Anthropic 529 |
@@ -65,7 +66,9 @@ design-signal/
 ## 4. Як це працює (data flow)
 
 ```
-GitHub Actions cron ('57 * * * *' UTC)
+cron-job.org (every hour at :00 UTC)
+        ↓ POST https://api.github.com/repos/.../workflows/digest.yml/dispatches
+GitHub Actions workflow_dispatch fires
         ↓
   src/main.py
         ↓
@@ -103,6 +106,14 @@ GitHub Actions cron ('57 * * * *' UTC)
 | `TELEGRAM_USER_ID` | Твій chat_id для DM-алертів | Отримай через [@userinfobot](https://t.me/userinfobot) |
 | `ANTHROPIC_API_KEY` | sk-ant-... API ключ | [console.anthropic.com](https://console.anthropic.com) → API Keys → revoke + новий |
 
+**Поза GitHub Secrets живе ще один токен:**
+
+| Що | Де живе | Якщо втратив |
+|---|---|---|
+| GitHub Personal Access Token (`github_pat_...`) | У headers cron-job.org → header `Authorization` | GitHub → Settings → Developer settings → Personal access tokens → revoke + новий, оновити в cron-job.org |
+
+Цей токен дає cron-job.org право запускати workflow. Має fine-grained scope: тільки repo `design-signal`, тільки права `Actions: Read and write`.
+
 **Важливо:** Anthropic API ключ створено на **особистому email і особистій картці**, окремо від робочого `o.shemchuk@retouchme.com`. Це навмисно — щоб біллинг каналу не змішувався з корпоративним.
 
 ---
@@ -119,12 +130,14 @@ DRY_RUN: 'false'                # 'true' = тільки логи, нічого �
 ```
 
 ### Розклад запуску
-Той самий файл, верх:
+Розклад тримається **виключно в cron-job.org** (single source of truth).
+У workflow файлі немає `schedule:` блока — лише `workflow_dispatch`.
 
-```yaml
-- cron: '57 * * * *'         # зараз: щогодини на :57 UTC (для тестування)
-# - cron: '30 6 * * *'       # production: 09:30 Київ (літо UTC+3)
-```
+Щоб змінити розклад:
+1. Зайди на [cron-job.org](https://cron-job.org) → твій job "Design Signal Trigger"
+2. Edit → вкладка Common → Execution schedule
+3. Постав потрібний cron (наприклад `30 6 * * *` для 09:30 Київ влітку)
+4. Save — все, ніяких пушів у git
 
 [Cron generator](https://crontab.guru) допоможе якщо треба інший час.
 
