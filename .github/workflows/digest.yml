@@ -1,19 +1,24 @@
 name: Design Signal Digest
 
-# TESTING MODE: every hour at :45 to quickly evaluate post quality.
-# We use :45 (not :00) because GitHub Actions sheds load at the top of each
-# hour — :00 cron runs get heavily delayed or silently skipped, especially
-# for private repos. Off-peak minutes (like :45) are far more reliable.
+# TESTING MODE: every hour at :30 to quickly evaluate post quality.
+# We use :30 (not :00) because GitHub Actions sheds load at the top of each
+# hour — :00 cron runs get heavily delayed or silently skipped. Off-peak
+# minutes (like :30) are far more reliable.
 # PRODUCTION TARGET: once a day at 09:30 Kyiv (summer UTC+3) = 06:30 UTC.
 #   Cron line: '30 6 * * *'
 on:
   schedule:
-    - cron: '57 * * * *'         # every hour at :57 past (UTC) — off-peak window
+    - cron: '30 * * * *'         # every hour at :30 past (UTC) — off-peak window
   workflow_dispatch:             # allows manual triggering from GitHub UI
 
 # Allow workflow to commit state.json back to repo
 permissions:
   contents: write
+
+# Opt into Node.js 24 runtime for JavaScript actions early (default June 2026).
+# Silences the deprecation warning for actions/checkout@v4 and setup-python@v5.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
   run-digest:
