@@ -41,6 +41,20 @@
       "title": "Grok Build 0.1 now available on Vercel AI Gateway",
       "score": 7.63,
       "published_at": "2026-05-22T14:02:54Z"
+    },
+    {
+      "key": "4d7249792f7b3c7b",
+      "url": "https://vercel.com/changelog/chat-sdk-adds-message-subjects-and-direct-sdk-access",
+      "title": "Chat SDK adds message subjects and direct SDK access",
+      "score": 7.63,
+      "published_at": "2026-05-22T14:59:20Z"
+    },
+    {
+      "key": "7134d4ec967e589d",
+      "url": "https://vercel.com/changelog/chat-sdk-now-supports-callback-urls-on-buttons-and-modals",
+      "title": "Chat SDK now supports callback URLs on buttons and modals",
+      "score": 7.63,
+      "published_at": "2026-05-22T14:59:28Z"
     }
   ]
 }
