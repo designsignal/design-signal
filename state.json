@@ -90,6 +90,27 @@
       "title": "Sandbox persistence is now GA",
       "score": 8.72,
       "published_at": "2026-05-27T09:31:36Z"
+    },
+    {
+      "key": "008b880e906f9835",
+      "url": "https://www.latent.space/p/ainews-anthropic-raises-965b-series",
+      "title": "[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode",
+      "score": 9.2,
+      "published_at": "2026-05-29T09:31:52Z"
+    },
+    {
+      "key": "ac87e5d6f46e6098",
+      "url": "https://vercel.com/changelog/opus-4-8-on-ai-gateway",
+      "title": "Opus 4.8 on AI Gateway",
+      "score": 8.72,
+      "published_at": "2026-05-29T09:32:01Z"
+    },
+    {
+      "key": "c589fd1b73342400",
+      "url": "https://www.latent.space/p/cognition",
+      "title": "The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray",
+      "score": 6.9,
+      "published_at": "2026-05-29T09:32:10Z"
     }
   ]
 }
