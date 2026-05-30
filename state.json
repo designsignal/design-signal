@@ -111,6 +111,27 @@
       "title": "The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray",
       "score": 6.9,
       "published_at": "2026-05-29T09:32:10Z"
+    },
+    {
+      "key": "880638aa77e3a8ee",
+      "url": "https://openai.com/index/braintrust",
+      "title": "How Braintrust turns customer requests into code with Codex",
+      "score": 8.05,
+      "published_at": "2026-05-30T09:31:39Z"
+    },
+    {
+      "key": "f0b6c386c19c169a",
+      "url": "https://vercel.com/blog/protecting-against-inference-theft",
+      "title": "Protecting against inference theft",
+      "score": 7.63,
+      "published_at": "2026-05-30T09:31:49Z"
+    },
+    {
+      "key": "0a1576f0c33b4b28",
+      "url": "https://vercel.com/changelog/function-invocations-now-billed-per-unit",
+      "title": "Function invocations now billed per unit",
+      "score": 6.54,
+      "published_at": "2026-05-30T09:31:57Z"
     }
   ]
 }
