@@ -146,6 +146,13 @@
       "title": "Run Docker containers inside Vercel Sandbox",
       "score": 7.63,
       "published_at": "2026-05-31T09:31:33Z"
+    },
+    {
+      "key": "e66ab895549168f0",
+      "url": "https://vercel.com/changelog/minimax-m3-on-ai-gateway",
+      "title": "MiniMax M3 on AI Gateway",
+      "score": 7.63,
+      "published_at": "2026-06-01T09:31:29Z"
     }
   ]
 }
