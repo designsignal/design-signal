@@ -174,6 +174,20 @@
       "title": "Signed URLs are now available for Vercel Blob",
       "score": 6.54,
       "published_at": "2026-06-03T09:31:58Z"
+    },
+    {
+      "key": "0108c676647031e2",
+      "url": "https://vercel.com/changelog/grok-imagine-video-1-5-on-ai-gateway",
+      "title": "Grok Imagine Video 1.5 on AI Gateway",
+      "score": 7.63,
+      "published_at": "2026-06-04T09:32:09Z"
+    },
+    {
+      "key": "2e1f29b50d98a2b5",
+      "url": "https://openai.com/index/endava-frontiers",
+      "title": "How Endava is redesigning software delivery around AI agents",
+      "score": 6.9,
+      "published_at": "2026-06-04T09:32:17Z"
     }
   ]
 }
