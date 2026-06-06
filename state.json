@@ -209,6 +209,20 @@
       "title": "Updates to Legal Terms",
       "score": 6.54,
       "published_at": "2026-06-05T09:32:02Z"
+    },
+    {
+      "key": "98db2b9e8e0317f6",
+      "url": "https://vercel.com/changelog/drives-for-vercel-sandbox-in-private-beta",
+      "title": "Drives for Vercel Sandbox in Private Beta",
+      "score": 8.72,
+      "published_at": "2026-06-06T09:31:43Z"
+    },
+    {
+      "key": "b15ab789149ea732",
+      "url": "https://vercel.com/changelog/the-skills-sh-api-is-now-available",
+      "title": "The skills.sh API is now available",
+      "score": 7.63,
+      "published_at": "2026-06-06T09:31:50Z"
     }
   ]
 }
