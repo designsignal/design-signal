@@ -237,6 +237,27 @@
       "title": "[AINews] FrontierCode: Benchmarking for Code Quality over Slop",
       "score": 6.9,
       "published_at": "2026-06-09T09:31:55Z"
+    },
+    {
+      "key": "d232148f3de4820c",
+      "url": "https://www.latent.space/p/ainews-anthropic-claude-fable-5-mythos",
+      "title": "[AINews] Anthropic Claude Fable 5 — Mythos but Safe, with Controversial Terms",
+      "score": 9.2,
+      "published_at": "2026-06-10T09:31:57Z"
+    },
+    {
+      "key": "a03855ff64d14606",
+      "url": "https://vercel.com/changelog/claude-fable-5-now-available-on-ai-gateway",
+      "title": "Claude Fable 5 now available on AI Gateway",
+      "score": 8.72,
+      "published_at": "2026-06-10T09:32:05Z"
+    },
+    {
+      "key": "12dfae77b6ea50ae",
+      "url": "https://vercel.com/changelog/budgets-for-api-keys-on-ai-gateway",
+      "title": "Budgets for API keys on AI Gateway",
+      "score": 7.63,
+      "published_at": "2026-06-10T09:32:13Z"
     }
   ]
 }
