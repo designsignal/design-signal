@@ -265,6 +265,27 @@
       "title": "[AINews] Open Models, Model Labs vs Agent Labs, and What's Untrainable — Sarah Guo",
       "score": 6.9,
       "published_at": "2026-06-11T09:31:53Z"
+    },
+    {
+      "key": "8f027b2b3ff8df1c",
+      "url": "https://vercel.com/blog/how-okara-runs-cmo-agents-for-120000-companies-on-vercel",
+      "title": "How Okara runs CMO agents for 120,000 companies on Vercel",
+      "score": 8.72,
+      "published_at": "2026-06-12T09:31:58Z"
+    },
+    {
+      "key": "a39981320d6cebc0",
+      "url": "https://www.latent.space/p/ainews-loopcraft-the-art-of-stacking",
+      "title": "[AINews] Loopcraft: The Art of Stacking Loops",
+      "score": 8.05,
+      "published_at": "2026-06-12T09:32:08Z"
+    },
+    {
+      "key": "f5dc1f3e81efb8ce",
+      "url": "https://vercel.com/changelog/vercel-plugin-is-now-available-in-grok-build",
+      "title": "Vercel plugin is now available in Grok Build",
+      "score": 7.63,
+      "published_at": "2026-06-12T09:32:16Z"
     }
   ]
 }
