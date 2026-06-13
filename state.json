@@ -286,6 +286,20 @@
       "title": "Vercel plugin is now available in Grok Build",
       "score": 7.63,
       "published_at": "2026-06-12T09:32:16Z"
+    },
+    {
+      "key": "29d23947ccb42a11",
+      "url": "https://vercel.com/changelog/workflow-sdk-now-runs-natively-in-nitro-v3",
+      "title": "Workflow SDK now runs natively in Nitro v3",
+      "score": 7.63,
+      "published_at": "2026-06-13T09:31:39Z"
+    },
+    {
+      "key": "dd73139d2e3dcd4c",
+      "url": "https://openai.com/index/academy-courses-applying-ai-at-work",
+      "title": "New OpenAI Academy courses for the next era of work",
+      "score": 6.9,
+      "published_at": "2026-06-13T09:31:46Z"
     }
   ]
 }
