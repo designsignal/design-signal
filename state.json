@@ -300,6 +300,20 @@
       "title": "New OpenAI Academy courses for the next era of work",
       "score": 6.9,
       "published_at": "2026-06-13T09:31:46Z"
+    },
+    {
+      "key": "e7619582c6ce7077",
+      "url": "https://vercel.com/changelog/workflow-sdk-now-supports-inflight-cancellation",
+      "title": "Workflow SDK now supports inflight cancellation",
+      "score": 8.72,
+      "published_at": "2026-06-16T09:32:52Z"
+    },
+    {
+      "key": "03a1443b29b38476",
+      "url": "https://vercel.com/changelog/workflow-sdk-now-supports-tanstack-start",
+      "title": "Workflow SDK now supports TanStack Start",
+      "score": 7.63,
+      "published_at": "2026-06-16T09:33:01Z"
     }
   ]
 }
