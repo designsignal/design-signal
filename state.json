@@ -335,6 +335,20 @@
       "title": "[AINews] GLM-5.2: the top Frontend Coding model in the world, IndexShare for Speculative Decoding",
       "score": 8.05,
       "published_at": "2026-06-17T09:32:15Z"
+    },
+    {
+      "key": "d0ecc4214e6c76de",
+      "url": "https://vercel.com/blog/vercel-ship-2026-recap",
+      "title": "Vercel Ship 2026 recap",
+      "score": 8.72,
+      "published_at": "2026-06-18T09:32:05Z"
+    },
+    {
+      "key": "c2819be897ac6240",
+      "url": "https://vercel.com/blog/introducing-eve",
+      "title": "Introducing eve",
+      "score": 8.72,
+      "published_at": "2026-06-18T09:32:13Z"
     }
   ]
 }
