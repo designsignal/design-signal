@@ -349,6 +349,20 @@
       "title": "Introducing eve",
       "score": 8.72,
       "published_at": "2026-06-18T09:32:13Z"
+    },
+    {
+      "key": "450d5ccfb1602dc2",
+      "url": "https://openai.com/index/chatgpt-enterprise-spend-controls",
+      "title": "New usage analytics and updated spend controls for enterprises",
+      "score": 6.9,
+      "published_at": "2026-06-19T09:32:05Z"
+    },
+    {
+      "key": "8a2d87782df0a247",
+      "url": "https://vercel.com/changelog/cli-deployment-limits-removed",
+      "title": "CLI deployment limits removed",
+      "score": 6.54,
+      "published_at": "2026-06-19T09:32:12Z"
     }
   ]
 }
