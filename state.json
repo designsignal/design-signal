@@ -370,6 +370,20 @@
       "title": "Sakana Fugu Ultra now available on AI Gateway",
       "score": 7.63,
       "published_at": "2026-06-22T09:31:35Z"
+    },
+    {
+      "key": "c978b727707b9164",
+      "url": "https://vercel.com/changelog/claude-design-and-vercel",
+      "title": "Deploy from Claude Design to Vercel",
+      "score": 8.72,
+      "published_at": "2026-06-23T09:31:44Z"
+    },
+    {
+      "key": "0d7df02b0f205fa5",
+      "url": "https://vercel.com/blog/vercel-flags-platform-native-feature-flags",
+      "title": "Vercel Flags: Platform-native feature flags",
+      "score": 7.63,
+      "published_at": "2026-06-23T09:31:55Z"
     }
   ]
 }
