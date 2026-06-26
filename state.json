@@ -426,6 +426,20 @@
       "title": "GLM 5.2 Fast via Wafer now available on AI Gateway",
       "score": 7.63,
       "published_at": "2026-06-25T09:32:07Z"
+    },
+    {
+      "key": "52b37a6fe2f23eb1",
+      "url": "https://vercel.com/blog/ai-sdk-7",
+      "title": "AI SDK 7",
+      "score": 8.72,
+      "published_at": "2026-06-26T09:31:58Z"
+    },
+    {
+      "key": "99c2642bd0e0a793",
+      "url": "https://vercel.com/blog/teaching-agents-product-design-at-vercel",
+      "title": "Teaching agents product design at Vercel",
+      "score": 8.72,
+      "published_at": "2026-06-26T09:32:08Z"
     }
   ]
 }
