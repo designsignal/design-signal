@@ -440,6 +440,27 @@
       "title": "Teaching agents product design at Vercel",
       "score": 8.72,
       "published_at": "2026-06-26T09:32:08Z"
+    },
+    {
+      "key": "33c5179f3970a753",
+      "url": "https://www.latent.space/p/ainews-openai-gpt-56-sol-terra-luna",
+      "title": "[AINews] OpenAI GPT-5.6 Sol / Terra / Luna — restricted to trusted partners",
+      "score": 9.2,
+      "published_at": "2026-06-27T09:31:49Z"
+    },
+    {
+      "key": "30f48121decc708b",
+      "url": "https://openai.com/index/previewing-gpt-5-6-sol",
+      "title": "Previewing GPT-5.6 Sol: a next-generation model",
+      "score": 9.2,
+      "published_at": "2026-06-27T09:31:57Z"
+    },
+    {
+      "key": "aba799fdeb969093",
+      "url": "https://vercel.com/changelog/eve-agent-observability",
+      "title": "Trace and debug eve agent sessions with Vercel Observability",
+      "score": 8.72,
+      "published_at": "2026-06-27T09:32:05Z"
     }
   ]
 }
