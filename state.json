@@ -461,6 +461,13 @@
       "title": "Trace and debug eve agent sessions with Vercel Observability",
       "score": 8.72,
       "published_at": "2026-06-27T09:32:05Z"
+    },
+    {
+      "key": "21423a63ae3abb2e",
+      "url": "https://vercel.com/changelog/query-web-analytics-from-the-vercel-cli",
+      "title": "Query Web Analytics from the Vercel CLI",
+      "score": 7.63,
+      "published_at": "2026-06-28T09:31:30Z"
     }
   ]
 }
