@@ -482,6 +482,20 @@
       "title": "Query Speed Insights from the Vercel CLI",
       "score": 7.63,
       "published_at": "2026-06-30T09:31:55Z"
+    },
+    {
+      "key": "8252f2e939ddae17",
+      "url": "https://vercel.com/blog/vercel-services-run-full-stack-on-vercel",
+      "title": "Vercel Services: Run full stack on Vercel",
+      "score": 7.63,
+      "published_at": "2026-06-30T17:28:11Z"
+    },
+    {
+      "key": "3de230977cd4b8d4",
+      "url": "https://newsletter.pragmaticengineer.com/p/impressions-from-visiting-openai",
+      "title": "Impressions from visiting OpenAI, Anthropic, & Cursor",
+      "score": 7.42,
+      "published_at": "2026-06-30T17:28:21Z"
     }
   ]
 }
