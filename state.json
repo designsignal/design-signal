@@ -468,6 +468,20 @@
       "title": "Query Web Analytics from the Vercel CLI",
       "score": 7.63,
       "published_at": "2026-06-28T09:31:30Z"
+    },
+    {
+      "key": "58d50bb62171a60a",
+      "url": "https://vercel.com/blog/realtime-voice-agents-on-ai-gateway",
+      "title": "Build realtime voice agents on AI Gateway",
+      "score": 8.72,
+      "published_at": "2026-06-30T09:31:48Z"
+    },
+    {
+      "key": "67ae81846a830e07",
+      "url": "https://vercel.com/changelog/query-speed-insights-from-the-vercel-cli",
+      "title": "Query Speed Insights from the Vercel CLI",
+      "score": 7.63,
+      "published_at": "2026-06-30T09:31:55Z"
     }
   ]
 }
