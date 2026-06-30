@@ -28,10 +28,11 @@ from .score import score_batch
 # Don't score articles older than this — daily digest is about FRESH news.
 # Anything older than 3 days is stale and not worth spending tokens on.
 MAX_ARTICLE_AGE_DAYS = 3
-# Top-N freshest items per run. With 3 runs/day × 15 = ~45 articles/day max.
-MAX_TO_SCORE_PER_RUN = 15
-# Max items per single source per run. Stops arXiv (20+ papers/day) from
-# flooding the freshest-15 slots and starving real AI-design news sources.
+# Top-N freshest items per run. Bumped 15->20 so scoring has more on-brand
+# candidates to choose from now that sources are design-first (v4).
+MAX_TO_SCORE_PER_RUN = 20
+# Max items per single source per run. Keeps any one feed (e.g. a busy Google
+# News query) from monopolizing the freshest-N slots and starving other sources.
 MAX_PER_SOURCE = 2
 
 

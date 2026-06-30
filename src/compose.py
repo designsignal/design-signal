@@ -3,6 +3,8 @@ Composes a Telegram post in Ukrainian about a high-scoring article.
 Uses Claude Sonnet for higher-quality creative writing.
 """
 
+from __future__ import annotations
+
 import anthropic
 
 from .config import Config

@@ -9,6 +9,8 @@ Outage handling:
   - Notify user via Telegram DM when outage detected.
 """
 
+from __future__ import annotations
+
 import json
 import random
 import re
