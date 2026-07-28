@@ -5,11 +5,35 @@ Committed back to repo by GitHub Actions after each run.
 
 import hashlib
 import json
+import re
 import time
 from pathlib import Path
 from typing import Iterable
 
 MAX_ENTRIES = 5000  # rotate old after this; protects state.json from infinite growth
+
+_STOP = {"the", "a", "an", "to", "for", "of", "in", "on", "and", "or", "is",
+         "now", "with", "your", "you", "how", "why", "new", "de", "la"}
+
+
+def norm_title(title: str) -> str:
+    """Lowercase, strip punctuation, drop stopwords — for fuzzy dup comparison."""
+    t = re.sub(r"[^\w\s]", " ", (title or "").lower())
+    toks = [w for w in t.split() if w not in _STOP and len(w) > 2]
+    return " ".join(toks)
+
+
+def recent_titles(state: dict, n: int = 60) -> list:
+    """Normalized titles of the last n published items — for cross-run dedup."""
+    pub = state.get("published", [])[-n:]
+    return [norm_title(e.get("title", "")) for e in pub if e.get("title")]
+
+
+def published_today_count(state: dict) -> int:
+    """How many posts were published today (UTC) — for the daily pacing cap."""
+    today = time.strftime("%Y-%m-%d", time.gmtime())
+    return sum(1 for e in state.get("published", [])
+               if str(e.get("published_at", "")).startswith(today))
 
 
 def _url_key(url: str) -> str:

@@ -15,6 +15,7 @@ Run locally:    python -m src.main
 Dry-run:        DRY_RUN=true python -m src.main
 """
 
+import difflib
 import sys
 from datetime import datetime, timedelta, timezone
 
@@ -25,6 +26,47 @@ from .fetch import fetch_all
 from .publish import notify_user, send_to_channel
 from .score import score_batch
 
+
+def _titles_similar(a: str, b: str, threshold: float = 0.72) -> bool:
+    """True if two normalized titles describe the same story."""
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    ta, tb = set(a.split()), set(b.split())
+    if ta and tb and len(ta & tb) / min(len(ta), len(tb)) >= 0.8:
+        return True
+    return difflib.SequenceMatcher(None, a, b).ratio() >= threshold
+
+
+def _dedupe(items: list, recent: list) -> list:
+    """Drop items whose title matches another kept item or a recently published one."""
+    kept, norms = [], []
+    for it in items:
+        nt = state.norm_title(it.get("title", ""))
+        if any(_titles_similar(nt, r) for r in recent):
+            continue
+        if any(_titles_similar(nt, k) for k in norms):
+            continue
+        kept.append(it)
+        norms.append(nt)
+    return kept
+
+
+def _resolve_url(url: str) -> str:
+    """Decode a Google News RSS redirect to the real source URL. Best-effort."""
+    if not url or "news.google.com" not in url:
+        return url
+    try:
+        from googlenewsdecoder import gnewsdecoder
+        r = gnewsdecoder(url, interval=1)
+        dec = r.get("decoded_url") if isinstance(r, dict) else None
+        if dec and str(dec).startswith("http"):
+            return dec
+    except Exception as e:
+        print(f"  [decode-skip] {type(e).__name__}")
+    return url
+
 # Don't score articles older than this — daily digest is about FRESH news.
 # Anything older than 3 days is stale and not worth spending tokens on.
 MAX_ARTICLE_AGE_DAYS = 3
@@ -34,6 +76,10 @@ MAX_TO_SCORE_PER_RUN = 20
 # Max items per single source per run. Keeps any one feed (e.g. a busy Google
 # News query) from monopolizing the freshest-N slots and starving other sources.
 MAX_PER_SOURCE = 2
+# Pacing: never publish more than this many posts across all runs in one UTC day.
+# Combined with a small MAX_POSTS_PER_RUN and frequent cron triggers, this spaces
+# posts out instead of dumping a wall at once.
+DAILY_CAP = 4
 
 
 def main() -> int:
@@ -78,6 +124,13 @@ def main() -> int:
             continue
         per_source_count[src] = per_source_count.get(src, 0) + 1
         diversified.append(itm)
+
+    # Fuzzy-dedupe by title: kills same-story repeats across Google News queries
+    # and stories we already published in recent runs (URL dedup misses these).
+    before_dedup = len(diversified)
+    diversified = _dedupe(diversified, state.recent_titles(st, 60))
+    print(f"After title-dedupe: {len(diversified)} (removed {before_dedup - len(diversified)} near-dups)")
+
     to_score = diversified[:MAX_TO_SCORE_PER_RUN]
     print(f"After per-source cap ({MAX_PER_SOURCE}/source): {len(diversified)} candidates, "
           f"scoring top {len(to_score)}")
@@ -95,6 +148,28 @@ def main() -> int:
     print(f"\nWinners (score >= {Config.MIN_SCORE_TO_PUBLISH}): {len(winners)}")
     for w in winners:
         print(f"  {w['score']:.1f} | {w['title'][:80]} | {w['source_name']}")
+
+    # Resolve Google News redirects to real source URLs (clean links) and use the
+    # resolved URL as a final dedupe guard against already-published stories.
+    seen_keys = set()
+    resolved = []
+    for w in winners:
+        w["url"] = _resolve_url(w.get("url", ""))
+        key = state._url_key(w["url"])
+        if key in seen_keys or state.is_published(st, w["url"]):
+            print(f"  [dup-skip] {w['title'][:60]}")
+            continue
+        seen_keys.add(key)
+        resolved.append(w)
+    winners = resolved
+
+    # Daily pacing cap — never exceed DAILY_CAP posts per UTC day across all runs.
+    already_today = state.published_today_count(st)
+    remaining_today = max(0, DAILY_CAP - already_today)
+    if len(winners) > remaining_today:
+        print(f"  [daily-cap] {already_today} already posted today; "
+              f"trimming winners {len(winners)} -> {remaining_today}")
+        winners = winners[:remaining_today]
 
     if not winners:
         print("\nNo articles above threshold this run. Done.")

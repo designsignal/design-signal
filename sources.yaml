@@ -36,55 +36,105 @@ layer_1_primary:
 
     - name: "Claude Design / Anthropic (news)"
       url: "https://news.google.com/rss/search?q=%28Anthropic%20OR%20%22Claude%20Design%22%29%20%28design%20OR%20Artifacts%20OR%20canvas%29%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
-      weight: 1.5
+      weight: 1.55
       lang: en
       tags: [anthropic, claude, design-tool, design-to-code]
       notes: "Claude Design, design->code handoff, Artifacts."
 
     - name: "Framer (news)"
       url: "https://news.google.com/rss/search?q=Framer%20%28AI%20OR%20update%20OR%20feature%20OR%20launch%20OR%20agent%29%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
-      weight: 1.4
+      weight: 1.15
       lang: en
       tags: [framer, ai, design-tool]
 
     - name: "Lovable (news)"
       url: "https://news.google.com/rss/search?q=%22Lovable%22%20%28AI%20app%20builder%20OR%20update%20OR%20feature%29%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
-      weight: 1.2
+      weight: 1.4
       lang: en
       tags: [lovable, ai, text-to-app, prototyping]
 
     - name: "Cursor (news)"
       url: "https://news.google.com/rss/search?q=%22Cursor%22%20%28AI%20editor%20OR%20coding%20OR%20update%20OR%20release%29%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
-      weight: 1.1
+      weight: 1.2
       lang: en
       tags: [cursor, ai, ide]
       notes: "Noisier query — rely on scoring to filter non-design items."
 
     - name: "v0 by Vercel (news)"
       url: "https://news.google.com/rss/search?q=%22v0%22%20Vercel%20%28update%20OR%20feature%20OR%20design%29%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
-      weight: 1.1
+      weight: 1.2
       lang: en
       tags: [v0, vercel, generative-ui]
 
     - name: "AI design tools (broad)"
       url: "https://news.google.com/rss/search?q=AI%20design%20tool%20%28Figma%20OR%20Framer%20OR%20Lovable%20OR%20Cursor%20OR%20prototyping%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en"
-      weight: 1.3
+      weight: 1.25
       lang: en
       tags: [ai, design-tool, roundup]
       notes: "Catch-all for new entrants and cross-tool stories."
+
+    - name: "Design delivery & AI-native teams (news)"
+      url: "https://news.google.com/rss/search?q=%28%22AI-native%22%20OR%20%22design%20ops%22%20OR%20%22design%20workflow%22%20OR%20%22design%20pipeline%22%20OR%20%22design%20delivery%22%29%20%28product%20OR%20designer%20OR%20UX%20OR%20team%29%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20when%3A10d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.4
+      lang: en
+      tags: [design-ops, ai-native, workflow, process]
+      notes: "How product teams build design/dev processes & pipelines with AI. Exclusions strip chip/CAD noise."
+
+    - name: "Modern design tools & new entrants (news)"
+      url: "https://news.google.com/rss/search?q=%28Lovable%20OR%20Subframe%20OR%20%22Magic%20Patterns%22%20OR%20Onlook%20OR%20Paper%20OR%20Flowstep%20OR%20Moonchild%20OR%20%22UX%20Pilot%22%20OR%20Bolt.new%29%20%28launch%20OR%20update%20OR%20feature%20OR%20raises%20OR%20agent%29%20design%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.3
+      lang: en
+      tags: [design-tool, new-entrants, prototyping]
+      notes: "Niche/new AI design tools: Subframe, Paper, Flowstep, Moonchild, UX Pilot, Bolt. Names as keywords — caught when there's news."
+
+    - name: "Design engineering (news)"
+      url: "https://news.google.com/rss/search?q=%28%22design%20engineer%22%20OR%20%22design%20engineering%22%29%20%28%22product%20design%22%20OR%20frontend%20OR%20UI%20OR%20UX%20OR%20Figma%20OR%20prototyping%20OR%20%22design%20system%22%29%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20-automotive%20-civil%20-mechanical%20-subsea%20-federal%20-aerospace%20-GM%20-Ford%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.5
+      lang: en
+      tags: [design-engineering, design-engineer, frontend]
+      notes: "Design Engineer role, designers shipping code. Exclusions strip mechanical/automotive engineering."
+
+    - name: "Claude Code / Figma MCP / design systems (news)"
+      url: "https://news.google.com/rss/search?q=%28%22Claude%20Code%22%20OR%20%22Claude%20skills%22%20OR%20%22Figma%20MCP%22%20OR%20%22AI%20design%20system%22%20OR%20%22design%20tokens%20AI%22%29%20%28design%20OR%20Figma%20OR%20UI%20OR%20%22design%20system%22%20OR%20handoff%29%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20-security%20-Bloomberg%20-NSA%20-enterprise%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.5
+      lang: en
+      tags: [claude-code, mcp, design-systems, tokens]
+      notes: "Claude Code for design, Claude skills, Figma MCP, AI design systems/tokens. Core to Alex's direction."
+
+    - name: "AI UX research & synthetic testing (news)"
+      url: "https://news.google.com/rss/search?q=%28Uxia%20OR%20%22synthetic%20user%22%20OR%20%22synthetic%20users%22%20OR%20%22AI%20usability%20testing%22%20OR%20%22AI%20user%20research%22%20OR%20%22AI%20research%20synthesis%22%20OR%20%22AI%20moderated%20testing%22%29%20%28design%20OR%20UX%20OR%20product%20OR%20prototype%20OR%20usability%20OR%20designer%29%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.15
+      lang: en
+      tags: [ux-research, synthetic-testing, uxia, maze]
+      notes: "AI research/testing tools: Uxia (synthetic users), Maze, AI usability testing. Sense A of 'research' — NOT Mobbin-style pattern reference. UX Pilot lives in new-entrants (it's a design tool, not research)."
+
+    - name: "Prompt & context engineering for designers (news)"
+      url: "https://news.google.com/rss/search?q=%28%22prompt%20engineering%22%20OR%20%22context%20engineering%22%20OR%20%22AI%20prompts%22%20OR%20prompting%29%20%28designer%20OR%20%22product%20design%22%20OR%20%22UI%20design%22%20OR%20UX%20OR%20Figma%29%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20-SAP%20-Bedrock%20-enterprise%20-protocol%20when%3A14d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.15
+      lang: en
+      weight_note: "Context engineering is a valued 2026 skill; classic prompt-eng how-tos stay weak."
+      tags: [prompt-engineering, context-engineering, designers]
+      notes: "Prompt/context engineering aimed at designers (not dev/agent-framework generative-UI, which is off-topic)."
+
+    - name: "AI design workflow (news)"
+      url: "https://news.google.com/rss/search?q=%28designer%20OR%20%22design%20team%22%29%20AI%20%28workflow%20OR%20%22design%20process%22%20OR%20prototyping%20OR%20%22design%20to%20code%22%20OR%20automation%29%20-chip%20-semiconductor%20-EDA%20-Cadence%20-Synopsys%20-Siemens%20-quantum%20-DaVinci%20-Resolve%20-edtech%20-stocks%20-earnings%20-CAD%20-manufacturing%20-3D%20when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      weight: 1.35
+      lang: en
+      tags: [workflow, automation, design-to-code]
+      notes: "Designers automating work / squeezing value from AI. Scoring gates the remaining noise."
 
   # --- DESIGN PUBLICATIONS (verified live first-party RSS, 2026-06-30) ---
   design_publications:
     - name: "UX Collective"
       url: "https://uxdesign.cc/feed"
-      weight: 1.3
+      weight: 1.2
       lang: en
       tags: [ux, product-design, editorial]
       notes: "Largest design publication. AI×design coverage; scoring filters non-AI."
 
     - name: "Builder.io blog"
       url: "https://www.builder.io/blog/feed.xml"
-      weight: 1.3
+      weight: 1.25
       lang: en
       tags: [design-to-code, visual-copilot, ai]
       notes: "Design->code handoff, figma-to-code — squarely on brand."
@@ -123,7 +173,7 @@ layer_1_primary:
   ukrainian:
     - name: "Telegraf.design"
       url: "https://telegraf.design/feed/"
-      weight: 1.2
+      weight: 1.1
       lang: uk
       tags: [ua, design, magazine]
       notes: "Verified live. UA design coverage."

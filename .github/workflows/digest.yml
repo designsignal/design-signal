@@ -48,7 +48,7 @@ jobs:
           CLAUDE_SCORING_MODEL: 'claude-haiku-4-5-20251001'
           CLAUDE_COMPOSING_MODEL: 'claude-sonnet-4-6'
           MIN_SCORE_TO_PUBLISH: '6'
-          MAX_POSTS_PER_RUN: '3'
+          MAX_POSTS_PER_RUN: '4'
           DRY_RUN: 'false'
           PYTHONUNBUFFERED: '1'
         run: python -u -m src.main

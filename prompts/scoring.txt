@@ -11,12 +11,41 @@ OUR READER:
 
 THE HARD RELEVANCE TEST (an article can only score 7+ if at least ONE is clearly YES):
   1. Does it change a TOOL the designer uses daily (Figma, Framer, Claude Design,
-     Lovable, v0, Cursor, Adobe)?
+     Lovable, v0, Cursor, Adobe) or introduce a NEW modern design/proto tool?
   2. Does it change HOW a designer works (designing, prototyping, design->code
      handoff, design systems, working with AI agents on design)?
   3. Is it a NEW AI product / mode a designer could actually try this week?
+  4. Does it show how product teams BUILD design/dev processes with AI — pipelines,
+     design ops, automation of design work, or a designer squeezing more value out of
+     AI (shipping code, agent workflows, "AI-native" team practices)?
 If an article is only interesting to someone building backend/infrastructure, it FAILS
 the test — cap it at 3 no matter how big the news is.
+
+HIGH-PRIORITY THEMES (score these 8+ when concrete and fresh — this is the channel's core):
+- New / updated modern design & prototyping tools: Figma, Claude Design, Lovable, v0,
+  Cursor, Subframe, Magic Patterns, Onlook, Paper, Bolt, and new entrants. (Framer is
+  strong for marketing/landing sites but NOT core for complex product systems — treat mid.)
+- How product companies build design + development processes, pipelines, and design ops
+  with AI; case studies of AI-native design teams shipping faster.
+- Designers automating their work and extracting maximum value from today's AI:
+  design-to-code, agent workflows, prompt/context practices, real hands-on setups.
+
+LOWER-PRIORITY THEMES (fine, but only score 8+ if the story is genuinely strong):
+- AI UX research / synthetic user testing (Uxia, synthetic users) — promising but not yet
+  core workflow in Tier-1 teams.
+- Classic "prompt engineering" how-tos are weak. BUT context engineering — system prompts,
+  design-system-as-context, project instructions — is a valued 2026 skill; treat it as mid.
+
+QUALITY BAR — this channel CURATES, it does not aggregate. Quality over quantity:
+- Prefer best-in-class, proven, widely-adopted tools & approaches: Figma, Claude, Cursor,
+  Lovable, v0, Framer — and tools with real traction (used by strong teams, top-tier
+  funding, notable integrations like MCP).
+- Down-rank "yet another AI tool that does X" when a stronger established alternative
+  already exists. Do NOT reward me-too products or inferior clones.
+- Skip hype with no substance: no traction, no shipping product, vaporware, pure launch-PR
+  of an unproven tool. When unsure a small/unknown tool is actually good, be STINGY (score lower).
+- Better to surface nothing than to fill space with mediocre news — a weak day should
+  yield fewer high-quality posts, not filler.
 
 STOP-LIST — these score 0-3 even if from a "big" company:
 - Backend / infra / devops: storage, signed URLs, blob, serverless inference, function
@@ -24,7 +53,11 @@ STOP-LIST — these score 0-3 even if from a "big" company:
 - Model-race noise with no designer-facing change: "X tokens/sec", price-per-token,
   parameter counts, raw benchmarks (Nemotron, GLM, Grok throughput, etc.).
 - Pure frontend-library releases (Tailwind, shadcn, component-lib changelogs).
-- Enterprise/engineering process case studies with no design angle.
+- WRONG kind of "design": chip / silicon / semiconductor / EDA design (Cadence, Synopsys,
+  Siemens), CAD / industrial / mechanical design, 3D-printing, architecture, fashion.
+- Enterprise/engineering process case studies with no design angle; company earnings,
+  stock moves, funding rounds UNLESS it's a design-tool launch/raise designers will use.
+- Generic AI-productivity fluff (ADHD hacks, "7 AI agents to automate anything").
 - Listicles ("10 best…", "Top X tools…"), pure inspiration galleries, press releases
   with no insight, academic papers.
 - Anything where "design" appears only as a bolted-on afterthought paragraph.
