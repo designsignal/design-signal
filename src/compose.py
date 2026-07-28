@@ -51,6 +51,8 @@ def compose_post(item: dict) -> str | None:
         if text.startswith("```"):
             lines = text.split("\n")
             text = "\n".join(line for line in lines if not line.strip().startswith("```"))
+        # Kill em/en dashes — a tell of AI text. Channel style uses plain hyphens.
+        text = text.replace(" — ", " - ").replace(" – ", " - ").replace("—", "-").replace("–", "-")
         # Safety: enforce max length for Telegram
         if len(text) > 1200:
             text = text[:1180] + "..."
