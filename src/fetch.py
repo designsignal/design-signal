@@ -94,6 +94,9 @@ def _fetch_one(source: dict) -> list[dict]:
                 "source_tags": source.get("tags", []),
                 "source_category": source.get("category", ""),
                 "source_lang": source.get("lang", "en"),
+                # Google News RSS carries the real publisher in <source>; keep it
+                # so we can drop low-trust outlets (crypto, PR wires) before scoring.
+                "source_publisher": (entry.get("source") or {}).get("title", ""),
             })
         print(f"  [ok]   {name}: {len(items)} items")
         return items

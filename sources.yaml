@@ -160,6 +160,41 @@ layer_1_primary:
       tags: [ux, research]
       notes: "Classic UX. Only AI-angled pieces should pass."
 
+    - name: "LukeW (Luke Wroblewski)"
+      url: "https://www.lukew.com/rss/rss.asp"
+      weight: 1.3
+      lang: en
+      tags: [product-design, ai, thought-leader]
+      notes: "Top-tier product designer (ex-Google/Microsoft) writing prolifically about AI x design. Verified live 2026-06-30."
+
+    - name: "Julie Zhuo (The Looking Glass)"
+      url: "https://lg.substack.com/feed"
+      weight: 1.15
+      lang: en
+      tags: [design-leadership, product, ai]
+      notes: "Ex-VP Design at Facebook. Design leadership + product + AI. Scoring filters her off-topic/personal posts."
+
+    - name: "UX Design Weekly"
+      url: "https://uxdesignweekly.com/feed/"
+      weight: 1.1
+      lang: en
+      tags: [ux, curated, weekly]
+      notes: "Curated weekly best-of UX links - a meta-source that surfaces strong pieces."
+
+    - name: "Josh Comeau (design engineering)"
+      url: "https://www.joshwcomeau.com/rss.xml"
+      weight: 1.1
+      lang: en
+      tags: [design-engineering, frontend]
+      notes: "Design-engineering craft (CSS/React/UI). On-brand for the design-engineer theme; scoring gates the deep-frontend ones."
+
+    - name: "Peter Yang (Creator Economy)"
+      url: "https://creatoreconomy.so/feed"
+      weight: 1.1
+      lang: en
+      tags: [ai, product, workflow]
+      notes: "Practical AI x product/workflow (how to use AI tools at work). Filter to design/workflow-relevant."
+
   # --- AI labs (kept minimal — only when a model move affects designers) ---
   ai_labs:
     - name: "OpenAI blog"

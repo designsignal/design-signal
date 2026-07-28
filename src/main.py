@@ -53,6 +53,12 @@ def _dedupe(items: list, recent: list) -> list:
     return kept
 
 
+def _is_blocked_source(item: dict) -> bool:
+    """Drop low-trust outlets (crypto, PR wires, stock sites) before scoring."""
+    hay = ((item.get("source_publisher") or "") + " " + (item.get("url") or "")).lower()
+    return any(b in hay for b in BLOCKED_SOURCES)
+
+
 def _resolve_url(url: str) -> str:
     """Decode a Google News RSS redirect to the real source URL. Best-effort."""
     if not url or "news.google.com" not in url:
@@ -80,6 +86,15 @@ MAX_PER_SOURCE = 2
 # Combined with a small MAX_POSTS_PER_RUN and frequent cron triggers, this spaces
 # posts out instead of dumping a wall at once.
 DAILY_CAP = 4
+# Low-trust outlets dropped before scoring — crypto exchanges, PR wires, stock
+# tickers. They surface via Google News but never belong in a design digest.
+BLOCKED_SOURCES = (
+    "kucoin", "coindesk", "cointelegraph", "binance", "crypto.news",
+    "benzinga", "tradingview", "marketbeat", "zacks", "motley fool",
+    "tipranks", "simply wall", "stocktwits", "investing.com",
+    "globenewswire", "prnewswire", "pr newswire", "businesswire",
+    "business wire", "accesswire", "einpresswire", "einnews", "24-7pressrelease",
+)
 
 
 def main() -> int:
@@ -101,6 +116,12 @@ def main() -> int:
     cutoff = datetime.now(timezone.utc) - timedelta(days=MAX_ARTICLE_AGE_DAYS)
     recent = [i for i in items if (i.get("published_at") or datetime.min.replace(tzinfo=timezone.utc)) >= cutoff]
     print(f"Recent (<{MAX_ARTICLE_AGE_DAYS}d): {len(recent)}")
+
+    # Drop low-trust outlets (crypto/PR/stock) before anything else.
+    before_block = len(recent)
+    recent = [i for i in recent if not _is_blocked_source(i)]
+    if before_block != len(recent):
+        print(f"Blocked low-trust sources: -{before_block - len(recent)}")
 
     # 3. Dedupe vs already-published
     st = state.load(Config.STATE_FILE)

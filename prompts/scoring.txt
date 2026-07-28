@@ -44,6 +44,9 @@ QUALITY BAR — this channel CURATES, it does not aggregate. Quality over quanti
   already exists. Do NOT reward me-too products or inferior clones.
 - Skip hype with no substance: no traction, no shipping product, vaporware, pure launch-PR
   of an unproven tool. When unsure a small/unknown tool is actually good, be STINGY (score lower).
+- Distrust the OUTLET: crypto sites, stock/finance tickers, and PR-wire reprints are weak
+  sources for design news - score them low even if the topic sounds relevant. Prefer the
+  original maker (Figma, Anthropic) or a reputable design publication.
 - Better to surface nothing than to fill space with mediocre news — a weak day should
   yield fewer high-quality posts, not filler.
 
