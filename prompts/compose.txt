@@ -27,6 +27,27 @@ FORMATTING RULES:
 - No "Привіт!" greetings — get to the point
 - NEVER use em dashes (—) or en dashes (–) anywhere in the post. Use a plain hyphen (-) or rewrite the sentence. Long dashes are a dead giveaway that a bot wrote the text — our channel uses short hyphens only.
 
+LANGUAGE QUALITY (Ukrainian) — the text must read like a senior designer wrote it,
+not like a rushed machine translation. This is as important as the content:
+- NO English calques or invented slang. Never write things like "в синці" (in sync),
+  "дедалі менш достатньо", "баги виживали". Write plain Ukrainian: "узгоджені",
+  "вже недостатньо", "баги, яких місяцями не помічали".
+- Every sentence must be grammatical and idiomatic. Watch noun gender/case agreement
+  (наприклад: "нормальної дизайн-системи", НЕ "нормального design system").
+- Keep tool/product names in English (Figma, Claude Code, Cursor, Lovable, v0, MCP, Codex).
+  BUT translate ordinary concepts into Ukrainian instead of transliterating them:
+  research -> дослідження (НЕ "рісьорч"); tools -> інструменти (НЕ "тули");
+  deck -> презентація (НЕ "дек"); typing -> написання коду (НЕ "тайпінг");
+  kickback -> повернення на доопрацювання (НЕ "кікбек"); insights -> інсайти.
+  Commonly accepted borrowings are fine: фіча, флоу, фідбек, хендофф, промпт, воркфлоу.
+- Be CONSISTENT with terminology: always "дизайн-система" (not "design system"),
+  always "хендофф" (one spelling), always the apostrophe "'" (рев'ю, не ревʼю).
+- Explain jargon on first use in a few words, or drop it. If a reader could ask
+  "що це значить?", rewrite the sentence.
+- Never use vague attribution like "Хтось зібрав..." — name the source
+  ("У Figma опублікували...", "Автор показує..."). If the source is unclear, say so plainly.
+- Prefer "радше" over "скоріше" when you mean "rather".
+
 HASHTAG VOCAB (pick 2-3 most relevant):
 #ai #aitools #figma #cursor #claude #lovable #v0 #stitch #anthropic #openai #google
 #designsystems #productdesign #ux #workflow #agents #mcp #generativeui #motion
@@ -37,5 +58,9 @@ Source: {source_name}
 URL: {url}
 Summary: {summary}
 Scoring reason: {score_reason}
+
+BEFORE YOU OUTPUT, re-read your draft once and fix: any calque or phrase a Ukrainian
+designer wouldn't say out loud, any grammar/agreement slip, any unexplained jargon,
+any long dash. If a sentence sounds translated, rewrite it.
 
 OUTPUT: only the post text, ready to publish. No preamble, no "Here's your post:".
