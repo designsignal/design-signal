@@ -1315,6 +1315,34 @@
       "title": "All of the Lenny & Friends Summit talks are now online!",
       "score": 6.36,
       "published_at": "2026-09-30T07:02:31Z"
+    },
+    {
+      "key": "de0537997cc39cce",
+      "url": "https://www.lukew.com/ff/2164/design-systems-for-ai-agents",
+      "title": "Design Systems for AI Agents",
+      "score": 8.72,
+      "published_at": "2026-10-02T07:02:32Z"
+    },
+    {
+      "key": "6ee93766377079f3",
+      "url": "https://cloudwars.com/ai/microsoft-opens-its-managed-runtime-to-lovable-bringing-vibe-coded-apps-under-enterprise-governance/",
+      "title": "Microsoft Opens Its Managed Runtime to Lovable, Bringing Vibe-Coded Apps Under Enterprise Governance - Cloud Wars",
+      "score": 7.84,
+      "published_at": "2026-10-02T07:02:40Z"
+    },
+    {
+      "key": "91f4d37706ddbb7e",
+      "url": "https://www.builder.io/blog/build-an-agent-loop-a-small-model-can-finish",
+      "title": "Build an agent loop a small model can finish",
+      "score": 7.52,
+      "published_at": "2026-10-02T07:02:51Z"
+    },
+    {
+      "key": "46238dc99a510a07",
+      "url": "https://uxdesign.cc/stop-blaming-the-model-for-slow-ai-heres-how-to-design-for-it-doherty-s-threshold-as-a-guideline-5fa6d52e23fc?source=rss----138adf9c44c---4",
+      "title": "Stop blaming the model for slow AI. Using Doherty’s threshold as a guideline.",
+      "score": 6.36,
+      "published_at": "2026-10-02T07:03:02Z"
     }
   ]
 }
